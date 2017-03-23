@@ -20,7 +20,7 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public class Address extends BaseObject implements Serializable {
     private static final long serialVersionUID = 3617859655330969141L;
-    private String address;
+    private String physicalAddress;
     private String city;
     private String province;
     private String country;
@@ -28,8 +28,8 @@ public class Address extends BaseObject implements Serializable {
 
     @Column(length = 150)
     @Field
-    public String getAddress() {
-        return address;
+    public String getPhysicalAddress() {
+        return physicalAddress;
     }
 
     @Column(length = 50)
@@ -56,8 +56,8 @@ public class Address extends BaseObject implements Serializable {
         return postalCode;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
     }
 
     public void setCity(String city) {
@@ -102,7 +102,7 @@ public class Address extends BaseObject implements Serializable {
      */
     public int hashCode() {
         int result;
-        result = (address != null ? address.hashCode() : 0);
+        result = (physicalAddress != null ? physicalAddress.hashCode() : 0);
         result = 29 * result + (city != null ? city.hashCode() : 0);
         result = 29 * result + (province != null ? province.hashCode() : 0);
         result = 29 * result + (country != null ? country.hashCode() : 0);
@@ -118,7 +118,7 @@ public class Address extends BaseObject implements Serializable {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("country", this.country)
-                .append("address", this.address)
+                .append("physical address", this.physicalAddress)
                 .append("province", this.province)
                 .append("postalCode", this.postalCode)
                 .append("city", this.city).toString();

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -32,7 +33,6 @@ import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -46,12 +46,12 @@ import org.springframework.security.core.userdetails.UserDetails;
  *         by David Carter david@carter.net
  */
 @Entity
-@Table(name = "app_user")
+@Table(name = "APP_USER")
 @Indexed
 @XmlRootElement
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="APPUSER_FCSEQ")
 public class User extends BaseObject implements Serializable, UserDetails {
     private static final long serialVersionUID = 3832626162173359411L;
-
     private Long id;
     private String username;                    // required
     private String password;                    // required
@@ -62,14 +62,18 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String email;                       // required; unique
     private String phoneNumber;
     private String website;
-    private Address address = new Address();
+    //private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
-    private boolean credentialsExpired;
-
+	private boolean credentialsExpired;
+    private Publisher publisher;
+    private UserRegistration userRegistration;
+    private Teacher teacher;
+    private Bookstore bookstore;
+    private Customer customer;
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -88,13 +92,39 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
-    public Long getId() {
+
+	public Long getId() {
         return id;
     }
+    @OneToOne(mappedBy="user")
+    public Publisher getPublisher() {
+		return publisher;
+	}
+    
+    @OneToOne(mappedBy="user")
+    public Teacher getTeacher() {
+		return teacher;
+	}
+    
+    
+    @OneToOne 
+    @JoinColumn(name="REG_ID") 
+    public UserRegistration getUserRegistration() {
+		return userRegistration;
+	}
 
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
-    public String getUsername() {
+    @OneToOne(mappedBy="user")
+
+    public Bookstore getBookstore() {
+		return bookstore;
+	}
+    @OneToOne(mappedBy="user")
+    public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public String getUsername() {
         return username;
     }
 
@@ -156,13 +186,13 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public String getFullName() {
         return firstName + ' ' + lastName;
     }
-
+/*
     @Embedded
     @IndexedEmbedded
     public Address getAddress() {
         return address;
     }
-
+*/
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(
@@ -306,10 +336,10 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.website = website;
     }
 
-    public void setAddress(Address address) {
+/*    public void setAddress(Address address) {
         this.address = address;
     }
-
+*/
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -333,8 +363,21 @@ public class User extends BaseObject implements Serializable, UserDetails {
     public void setCredentialsExpired(boolean credentialsExpired) {
         this.credentialsExpired = credentialsExpired;
     }
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+	public void setUserRegistration(UserRegistration userRegistration) {
+		this.userRegistration = userRegistration;
+	}
+	public void setBookstore(Bookstore bookstore) {
+		this.bookstore = bookstore;
+	}
 
-    /**
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	/**
      * {@inheritDoc}
      */
     public boolean equals(Object o) {

@@ -11,7 +11,10 @@ import java.io.Serializable;
  */
 public abstract class BaseObject implements Serializable {    
 
-    /**
+
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Returns a multi-line String with key=value pairs.
      * @return a String representation of this class.
      */
