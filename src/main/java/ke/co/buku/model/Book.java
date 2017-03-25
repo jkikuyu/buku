@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -34,19 +35,42 @@ import org.hibernate.search.annotations.Indexed;
 public class Book extends BaseObject implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-    @Id
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long bookId;
+
+    @Column(nullable = false, length = 30)
+	@Field
 	private String Author;
-	private String Name;
-	private Integer edition;
-	private String thumbnailLoc;
+    
+    @Column(nullable = false, length = 50, unique = true)
+	@Field
+    private String Name;
+    
+    @Field
+    private Integer edition;
+    @Field
+    private String thumbnailLoc;
+	@Field
 	private String samplePage;
+	@Field
 	private String Description;
 	private  Integer price;
-	private Set <OrderItem> bookitems;
+	@ManyToMany(mappedBy="books")
+	private Set <Order> orders;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CATEGORY_ID") 
+
+	private Category category;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="BOOK_ID") 
+
+	private Book book;
+
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
@@ -55,49 +79,63 @@ public class Book extends BaseObject implements Serializable {
 	public Long getBookId() {
 		return bookId;
 	}
+	
 
-    @Column(nullable = false, length = 30)
-	@Field
 	public String getAuthor() {
 		return Author;
 	}
-    @Column(nullable = false, length = 50, unique = true)
-	@Field
+
 	public String getName() {
 		return Name;
 	}
-	@Field
+	
 	public Integer getEdition() {
 		return edition;
 	}
-	@Field
+	
 	public String getDescription() {
 		return Description;
 	}
-	@Field
 	public String getThumbnailLoc() {
 		return thumbnailLoc;
 	}
-	@Field
 	public String getSamplePage() {
 		return samplePage;
 	}
-	@Field
 	public Integer getPrice() {
 		return price;
 	}
 
 
-
-	public Set <OrderItem> getBookitems() {
-		return bookitems;
+	public Set<Order> getOrders() {
+		return orders;
 	}
 
 
-	public void setBookitems(Set <OrderItem> bookitems) {
-		this.bookitems = bookitems;
+	public Book getBook() {
+		return book;
 	}
 
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 
 	public void setPrice(Integer price) {
 		this.price = price;

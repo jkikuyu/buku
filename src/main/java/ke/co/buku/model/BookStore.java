@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,46 +31,66 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 @Table(name = "BOOKSTORE")
 @Indexed
 @XmlRootElement
-public class Bookstore extends BaseObject implements Serializable {
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="BOOKSTORE_FCSEQ")
+
+public class BookStore extends BaseObject implements Serializable {
+
 
 	private static final long serialVersionUID = 1L;
-	private Long storeId;
-	private String storeName;
-	private Address address= new Address();
-	private String telNo1;
-	private String telNo2;
-	private String email;
-	private String website;
-	private User user;
-
-	public Bookstore() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
+    private Long storeId;
+    
+	@Column(nullable = false, length = 50, unique = true)
+    @Field
+	private String storeName;
+	
+	@Embedded
+	@IndexedEmbedded
+	private Address address= new Address();
+
+	@Pattern(regexp="(^$|[0-9]{10})")
+    @Field
+	private String telNo1;
+    
+	@Pattern(regexp="(^$|[0-9]{10})")
+    @Field
+	private String telNo2;
+    
+	@Field
+	private String email;
+
+	@Field
+    private String website;
+   
+	@OneToOne 
+    @JoinColumn(name="USER_ID") 
+
+	private User user;
+
+	public BookStore() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getStoreId() {
 		return storeId;
 	}
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
+
 	public String getStoreName() {
 		return storeName;
 	}
-	@Embedded
-	@IndexedEmbedded
+
 	public Address getAddress() {
 		return address;
 	}
-    @Pattern(regexp="(^$|[0-9]{10})")
-    @Field
+
 
 	public String getTelNo1() {
 		return telNo1;
 	}
-    @Pattern(regexp="(^$|[0-9]{10})")
-    @Field
+
 
 	public String getTelNo2() {
 		return telNo2;
@@ -82,8 +103,6 @@ public class Bookstore extends BaseObject implements Serializable {
 	public String getWebsite() {
 		return website;
 	}
-    @OneToOne 
-    @JoinColumn(name="USER_ID") 
     
 
     public User getUser() {

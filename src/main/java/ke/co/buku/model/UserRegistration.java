@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -22,21 +20,35 @@ import org.hibernate.search.annotations.Indexed;
 public class UserRegistration extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @DocumentId
 	private Long regId;
+    
+	@Column(nullable = false, length = 25)
+    @Field
 	private String fName;
+    
+	@Column(nullable = false, length = 25)
+    @Field
 	private String lName;
+    
+	@Column(nullable = false, length = 25)
+    @Field
 	private String userName;
+   
+    @Column(nullable = false, unique = true, length = 100)
+    @Field
 	private String email;
-	private String verifyURL;
+    
+    @Field
+    private String verifyURL;
 	
 
 	public UserRegistration() {
 		// TODO Auto-generated constructor stub
 	}
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @DocumentId
 	public Long getRegId() {
 		return regId;
 	}
@@ -47,19 +59,14 @@ public class UserRegistration extends BaseObject implements Serializable {
 		return user;
 	}
 */
-    @Column(nullable = false, length = 25)
-    @Field
 
 	public String getfName() {
 		return fName;
 	}
-    @Column(nullable = false, length = 25)
-    @Field
 	public String getlName() {
 		return lName;
 	}
-    @Column(nullable = false, unique = true, length = 100)
-    @Field	public String getEmail() {
+    public String getEmail() {
 		return email;
 	}
     @Column(nullable = false, length = 50)

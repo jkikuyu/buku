@@ -1,20 +1,27 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 @Entity
 @Table(name = "STATUS")
 @Indexed
 @XmlRootElement
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="STATUS_FCSEQ")
+
 public class Status extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +29,13 @@ public class Status extends BaseObject implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long statusid;
+	@Column(nullable = false, length = 50)
+	@Field
 	private String name;
+	
+	@OneToMany(mappedBy="status")
+	private Set<Delivery> delivery;
+	
 	
 	public Status() {
 		// TODO Auto-generated constructor stub
@@ -34,6 +47,14 @@ public class Status extends BaseObject implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	public Set<Delivery> getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Set<Delivery> delivery) {
+		this.delivery = delivery;
 	}
 
 	public void setStatusid(Long statusid) {

@@ -1,8 +1,7 @@
 package ke.co.buku.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-import org.springframework.security.core.GrantedAuthority;
+import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +12,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.io.Serializable;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  * This class is used to represent available roles in the database.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:jkikuyu@gmail.com>Jude Kikuyu</a>
  *         Version by Dan Kibler dan@getrolling.com
  *         Extended to implement Acegi GrantedAuthority interface
  *         by David Carter david@carter.net
@@ -36,7 +38,7 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
     private Long id;
     private String name;
     private String description;
-
+    private Set <User> user;
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -77,7 +79,15 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
         return this.description;
     }
 
-    public void setId(Long id) {
+    public Set <User> getUser() {
+		return user;
+	}
+
+	public void setUser(Set <User> user) {
+		this.user = user;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

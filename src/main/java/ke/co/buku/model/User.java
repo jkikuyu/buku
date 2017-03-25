@@ -72,8 +72,9 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Publisher publisher;
     private UserRegistration userRegistration;
     private Teacher teacher;
-    private Bookstore bookstore;
+    private BookStore bookstore;
     private Customer customer;
+    private UserType userType;
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -115,7 +116,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     @OneToOne(mappedBy="user")
 
-    public Bookstore getBookstore() {
+    public BookStore getBookstore() {
 		return bookstore;
 	}
     @OneToOne(mappedBy="user")
@@ -249,7 +250,16 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return version;
     }
 
-    @Column(name = "account_enabled")
+    public UserType getUserType() {
+		return userType;
+	}
+
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	@Column(name = "account_enabled")
     public boolean isEnabled() {
         return enabled;
     }
@@ -369,7 +379,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	public void setUserRegistration(UserRegistration userRegistration) {
 		this.userRegistration = userRegistration;
 	}
-	public void setBookstore(Bookstore bookstore) {
+	public void setBookstore(BookStore bookstore) {
 		this.bookstore = bookstore;
 	}
 

@@ -1,7 +1,6 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,75 +32,77 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 @Table(name = "SCHOOL")
 @Indexed
 @XmlRootElement
-
-
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="SCHOOL_FCSEQ")
 public class School extends BaseObject implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long schoolId;
+	
+	@Column(nullable = false, length = 100, unique = true)
+    @Field
 	private String schoolName;
+	
+    @Embedded
+    @IndexedEmbedded
 	private Address address = new Address();
+	
+    @Pattern(regexp="(^$|[0-9]{10})")
+    @Field
 	private String telNo1;
+	
+    @Pattern(regexp="(^$|[0-9]{10})")
+    @Field
 	private String telNo2;
-	private String email;
+	
+    @Column(nullable = false, unique = true)
+    @Field
+    private String email;
+	
+	@Field
 	private String website;
+
+	@OneToMany(mappedBy="school")
 	private Set <Teacher> teachers;
+	
+	@OneToMany(mappedBy="school")
 	private Set <Class> classes;
 	
 	public School() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public Long getSchoolId() {
 		return schoolId;
 	}
-/*    @OneToMany(mappedBy="school")
-    
-	public List <Teacher> getTeacher(){
-		return teachers;
-	}
-*/    
-	@Column(nullable = false, length = 100, unique = true)
-    @Field
-
+ 
 	public String getSchoolName() {
 		return schoolName;
 	}
     
-    @Embedded
-    @IndexedEmbedded
     public Address getAddress() {
 		return address;
 	}
     
-    @Pattern(regexp="(^$|[0-9]{10})")
-    @Field
 	public String getTelNo1() {
 		return telNo1;
 	}
-    @Pattern(regexp="(^$|[0-9]{10})")
-	@Field
 	public String getTelNo2() {
 		return telNo2;
 	}
-    @Column(nullable = false, unique = true)
-    @Field
+
 	public String getEmail() {
 		return email;
 	}
-	 @Field
 	public String getWebsite() {
 		return website;
 	}
 	
-	@OneToMany(mappedBy="school")
 	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
-	@OneToMany(mappedBy="school")
 	public Set<Class> getClasses() {
 		return classes;
 	}

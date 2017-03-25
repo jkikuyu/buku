@@ -1,6 +1,7 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,37 +32,61 @@ import org.hibernate.search.annotations.Indexed;
 @Table(name = "CLASS")
 @Indexed
 @XmlRootElement
-
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="CLASS_FCSEQ")
 public class Class extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long classId;
-	private String className;
-	private School school;
-	
-
-	public Class() {
-		// TODO Auto-generated constructor stub
-	}
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 
+	private Long classId;
+    @Column(nullable = false, length = 50, unique = true)
+    @Field
+	private String className;
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="SCHOOL_ID") 
+	private School school;
+	@ManyToMany(mappedBy="classes")
+
+	private Set<Teacher> teachers;
+	
+	@OneToOne(mappedBy="clasz")	
+	private BookList booklist;
+
+	public Class() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getClassId() {
 		return classId;
 	}
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
+
 	public String getClassName() {
 		return className;
 	}
     
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="SCHOOL_ID") 
 
     public School getSchool() {
 		return school;
 	}
+
+	public Set<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public BookList getBooklist() {
+		return booklist;
+	}
+
+	public void setBooklist(BookList booklist) {
+		this.booklist = booklist;
+	}
+
+	public void setTeachers(Set<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
 	public void setSchool(School school) {
 		this.school = school;
 	}

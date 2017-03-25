@@ -1,12 +1,14 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -36,9 +38,35 @@ public class Category extends BaseObject implements Serializable {
 	@Column(nullable = false, length = 50, unique = true)
 	private String CategoryName;
 	
+	@OneToMany(mappedBy="category")
+	private Set <Book> books;
 
 	public Category() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public String getCategoryName() {
+		return CategoryName;
+	}
+
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public void setCategoryName(String categoryName) {
+		CategoryName = categoryName;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	@Override

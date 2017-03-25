@@ -8,13 +8,14 @@ import java.util.List;
  * Business Service Interface to handle communication between web and
  * persistence layer.
  *
- * @author <a href="mailto:dan@getrolling.com">Dan Kibler </a>
+ * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu </a>
+ * date: 24/03/2017
  */
 public interface RoleManager extends GenericManager<Role, Long> {
     /**
      * {@inheritDoc}
      */
-    List getRoles(Role role);
+    List <Role>getRoles();
 
     /**
      * {@inheritDoc}

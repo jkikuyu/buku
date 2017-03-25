@@ -26,9 +26,13 @@ public class RoleManagerImpl extends GenericManagerImpl<Role, Long> implements R
     /**
      * {@inheritDoc}
      */
-    public List<Role> getRoles(Role role) {
-        return dao.getAll();
-    }
+   
+
+	@Override
+	public List<Role> getRoles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     /**
      * {@inheritDoc}

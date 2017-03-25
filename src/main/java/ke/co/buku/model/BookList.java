@@ -1,58 +1,75 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+/**
+ * This class represents the basic Booklist object in Buku that allows 
+ * for Entry of booklist Details
+ 
+ * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu/a>
+ *        
+
+ */
 @Entity
 @Table(name = "BOOKLIST")
 @Indexed
 @XmlRootElement
+@SequenceGenerator(allocationSize=1,name="sequence", sequenceName="BOOKLIST_FCSEQ")
+
 public class BookList extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @DocumentId
 	private Long booklistId;
+   
+	@Column(nullable = false, length = 50)
+    @Field
 	private String name;
+    @Column(nullable = false, length = 50, unique = true)
+    @Field
+
 	private Integer year;
+	@OneToOne 
+    @JoinColumn(name="CLASS_ID") 
 	private Class clasz;
 	
 
 	public BookList() {
 		// TODO Auto-generated constructor stub
 	}
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @DocumentId
 
 	public Long getBooklistId() {
 		return booklistId;
 	}
-    @Column(nullable = false, length = 50)
-    @Field
 	public String getName() {
 		return name;
 	}
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
 	public Integer getYear() {
 		return year;
 	}
-    @OneToOne(mappedBy="class")
 	public Class getClasz() {
 		return clasz;
 	}
 
-
+	private Set <Book> books;
+	
 	public void setBooklistId(Long booklistId) {
 		this.booklistId = booklistId;
 	}
