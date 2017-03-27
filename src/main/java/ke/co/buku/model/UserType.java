@@ -1,12 +1,14 @@
 package ke.co.buku.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -28,8 +30,12 @@ public class UserType extends BaseObject implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long userTypeId;
+    @Column(nullable = false, length = 30)
+	@Field
 	private String name;
-	private User user;
+	@OneToMany(mappedBy="userType")
+
+	private Set<User> users;
 	
 
 	public UserType() {
@@ -39,18 +45,17 @@ public class UserType extends BaseObject implements Serializable {
 	public Long getUserTypeId() {
 		return userTypeId;
 	}
-    @Column(nullable = false, length = 30)
-	@Field
+
 	public String getName() {
 		return name;
 	}
 
-	public User getUser() {
-		return user;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	public void setUserTypeId(Long userTypeId) {

@@ -1,7 +1,7 @@
 package ke.co.buku.dao;
 
 import ke.co.buku.Constants;
-import ke.co.buku.model.Address;
+//import ke.co.buku.model.Address;
 import ke.co.buku.model.Role;
 import ke.co.buku.model.User;
 import org.junit.Test;
@@ -46,19 +46,19 @@ public class UserDaoTest extends BaseDaoTestCase {
     public void testUpdateUser() throws Exception {
         User user = dao.get(-1L);
 
-        Address address = user.getAddress();
+/*        Address address = user.getAddress();
         address.setAddress("new address");
-
+*/
         dao.saveUser(user);
         flush();
 
         user = dao.get(-1L);
-        assertEquals(address, user.getAddress());
+  /*      assertEquals(address, user.getAddress());
         assertEquals("new address", user.getAddress().getAddress());
-
+  */
         // verify that violation occurs when adding new user with same username
         User user2 = new User();
-        user2.setAddress(user.getAddress());
+//        user2.setAddress(user.getAddress());
         user2.setConfirmPassword(user.getConfirmPassword());
         user2.setEmail(user.getEmail());
         user2.setFirstName(user.getFirstName());
@@ -108,12 +108,13 @@ public class UserDaoTest extends BaseDaoTestCase {
         user.setPassword("testpass");
         user.setFirstName("Test");
         user.setLastName("Last");
-        Address address = new Address();
+ /*       Address address = new Address();
         address.setCity("Denver");
         address.setProvince("CO");
         address.setCountry("USA");
         address.setPostalCode("80210");
         user.setAddress(address);
+*/
         user.setEmail("testuser@appfuse.org");
         user.setWebsite("http://raibledesigns.com");
 

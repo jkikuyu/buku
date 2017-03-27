@@ -5,10 +5,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,7 +44,7 @@ public class BookList extends BaseObject implements Serializable {
 	@Column(nullable = false, length = 50)
     @Field
 	private String name;
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 50)
     @Field
 
 	private Integer year;
@@ -67,8 +69,9 @@ public class BookList extends BaseObject implements Serializable {
 	public Class getClasz() {
 		return clasz;
 	}
-
-	private Set <Book> books;
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="BOOK_ID") 
+	private Book book;
 	
 	public void setBooklistId(Long booklistId) {
 		this.booklistId = booklistId;

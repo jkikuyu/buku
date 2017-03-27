@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -52,29 +53,84 @@ import org.springframework.security.core.userdetails.UserDetails;
 @SequenceGenerator(allocationSize=1,name="sequence", sequenceName="APPUSER_FCSEQ")
 public class User extends BaseObject implements Serializable, UserDetails {
     private static final long serialVersionUID = 3832626162173359411L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @DocumentId
     private Long id;
+    @Column(nullable = false, length = 50, unique = true)
     private String username;                    // required
+    
+    @Column(nullable = false)
+    @XmlTransient
+    @JsonIgnore
     private String password;                    // required
+
+    @Transient
+    @XmlTransient
+    @JsonIgnore
     private String confirmPassword;
+    
+    @Column(name = "password_hint")
+    @XmlTransient
     private String passwordHint;
+    
+    @Column(name = "first_name", nullable = false, length = 50)
+    @Field
     private String firstName;                   // required
+    
+    @Column(name = "last_name", nullable = false, length = 50)
+    @Field
     private String lastName;                    // required
+    
+    @Column(nullable = false, unique = true)
+    @Field
     private String email;                       // required; unique
+    
+    @Column(name = "phone_number")
+    @Field(analyze= Analyze.NO)
     private String phoneNumber;
+    
+    @Field
     private String website;
     //private Address address = new Address();
     private Integer version;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+
     private Set<Role> roles = new HashSet<Role>();
+	
+    @Column(name = "account_enabled")
     private boolean enabled;
+    @Column(name = "account_expired", nullable = false)
     private boolean accountExpired;
+    @Column(name = "account_locked", nullable = false)
     private boolean accountLocked;
+    @Column(name = "credentials_expired", nullable = false)
+
 	private boolean credentialsExpired;
+    
+	@OneToOne(mappedBy="user")
     private Publisher publisher;
+    @OneToOne 
+    @JoinColumn(name="REG_ID") 
     private UserRegistration userRegistration;
+    @OneToOne(mappedBy="user")
     private Teacher teacher;
+    @OneToOne(mappedBy="user")
     private BookStore bookstore;
+    @OneToOne(mappedBy="user")
     private Customer customer;
+    @ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="USERTYPE_ID") 
     private UserType userType;
+    @Transient
+    private String fullName;
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -90,36 +146,30 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.username = username;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @DocumentId
 
 	public Long getId() {
         return id;
     }
-    @OneToOne(mappedBy="user")
     public Publisher getPublisher() {
 		return publisher;
 	}
     
-    @OneToOne(mappedBy="user")
+    
     public Teacher getTeacher() {
 		return teacher;
 	}
     
     
-    @OneToOne 
-    @JoinColumn(name="REG_ID") 
     public UserRegistration getUserRegistration() {
 		return userRegistration;
 	}
 
-    @OneToOne(mappedBy="user")
+  
 
     public BookStore getBookstore() {
 		return bookstore;
 	}
-    @OneToOne(mappedBy="user")
+   
     public Customer getCustomer() {
 		return customer;
 	}
@@ -129,51 +179,35 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return username;
     }
 
-    @Column(nullable = false)
-    @XmlTransient
-    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
-    @Transient
-    @XmlTransient
-    @JsonIgnore
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
-    @Column(name = "password_hint")
-    @XmlTransient
     public String getPasswordHint() {
         return passwordHint;
     }
 
-    @Column(name = "first_name", nullable = false, length = 50)
-    @Field
-    public String getFirstName() {
+   public String getFirstName() {
         return firstName;
     }
 
-    @Column(name = "last_name", nullable = false, length = 50)
-    @Field
     public String getLastName() {
         return lastName;
     }
 
-    @Column(nullable = false, unique = true)
-    @Field
     public String getEmail() {
         return email;
     }
 
-    @Column(name = "phone_number")
-    @Field(analyze= Analyze.NO)
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    @Field
+   
     public String getWebsite() {
         return website;
     }
@@ -183,10 +217,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
      *
      * @return firstName + ' ' + lastName
      */
-    @Transient
-    public String getFullName() {
-        return firstName + ' ' + lastName;
-    }
+   
 /*
     @Embedded
     @IndexedEmbedded
@@ -194,13 +225,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return address;
     }
 */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
     public Set<Role> getRoles() {
         return roles;
     }
@@ -255,16 +279,23 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	}
 
 
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 
-	@Column(name = "account_enabled")
     public boolean isEnabled() {
         return enabled;
     }
 
-    @Column(name = "account_expired", nullable = false)
     public boolean isAccountExpired() {
         return accountExpired;
     }
@@ -278,7 +309,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return !isAccountExpired();
     }
 
-    @Column(name = "account_locked", nullable = false)
     public boolean isAccountLocked() {
         return accountLocked;
     }
@@ -292,7 +322,6 @@ public class User extends BaseObject implements Serializable, UserDetails {
         return !isAccountLocked();
     }
 
-    @Column(name = "credentials_expired", nullable = false)
     public boolean isCredentialsExpired() {
         return credentialsExpired;
     }

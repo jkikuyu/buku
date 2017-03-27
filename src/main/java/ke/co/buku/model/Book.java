@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -68,9 +69,10 @@ public class Book extends BaseObject implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="BOOK_ID") 
-
 	private Book book;
 
+	@OneToMany(mappedBy="book")
+	private Set <BookList> booklists;
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
