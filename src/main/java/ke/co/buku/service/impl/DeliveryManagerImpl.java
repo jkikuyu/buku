@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.DeliveryDao;
 import ke.co.buku.model.Delivery;
+import ke.co.buku.service.DeliveryManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.Delivery;
  * date: 24/03/2017
  */
 @Service("deliveryManager")
-public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> {
+public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> implements DeliveryManager{
 	DeliveryDao deliveryDao;
 
     @Autowired
@@ -28,21 +29,21 @@ public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> {
 	/**
      * {@inheritDoc}
      */
-    List <Delivery>getDeliveries(){
+    public List <Delivery>getDeliveries(){
     	return dao.getAll();
     }
 
     /**
      * {@inheritDoc}
      */
-    Delivery getDelivery(Integer deliveryId){
+    public Delivery getDelivery(Integer deliveryId){
     	return deliveryDao.getDelivery(deliveryId);
     }
 
     /**DeliveryDao
      * {@inheritDoc}
      */
-    Delivery saveDelivery(Delivery delivery){
+    public Delivery saveDelivery(Delivery delivery){
     	return deliveryDao.save(delivery);
     }
 
@@ -52,5 +53,7 @@ public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> {
     public void removeDelivery(Integer deliveryId){
     	deliveryDao.removeDelivery(deliveryId);
     }
+
+
 
 }

@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.appfuse.dao.hibernate.GenericDaoHibernate;
+import org.springframework.stereotype.Repository;
 
 import ke.co.buku.dao.BookListDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.BookList;
-
+@Repository("bookListDao")
 public class BookListDaoHibernate extends GenericDaoHibernate<BookList, Long> implements BookListDao {
 
 	public BookListDaoHibernate() {

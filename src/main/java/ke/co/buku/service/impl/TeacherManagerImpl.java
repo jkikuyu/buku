@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.TeacherDao;
 import ke.co.buku.model.Teacher;
-@Service("userManager")
-public class TeacherManagerImpl extends GenericManagerImpl<Teacher, Long> {
+import ke.co.buku.service.TeacherManager;
+@Service("teacherManager")
+public class TeacherManagerImpl extends GenericManagerImpl<Teacher, Long> implements TeacherManager{
 	TeacherDao teacherDao;
 
     @Autowired
@@ -21,28 +22,28 @@ public class TeacherManagerImpl extends GenericManagerImpl<Teacher, Long> {
      * {@inheritDoc}
      */
 
-    List <Teacher> getTeachers(){
+    public List <Teacher> getTeachers(){
     	return dao.getAll();
     }
 
     /**
      * {@inheritDoc}
      */
-    Teacher getTeacher(Integer teacherId){
+    public Teacher getTeacher(Integer teacherId){
     	return teacherDao.getTeacher(teacherId);
     }
 
     /**
      * {@inheritDoc}
      */
-    Teacher saveTeacher(Teacher teacher){
+    public Teacher saveTeacher(Teacher teacher){
     	return dao.save(teacher);
     }
 
     /**
      * {@inheritDoc}
      */
-    void removeTeacher(Integer teacherId){
+    public void removeTeacher(Integer teacherId){
     	teacherDao.removeTeacher(teacherId);
     }
 

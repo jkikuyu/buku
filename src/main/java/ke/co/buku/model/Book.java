@@ -64,13 +64,8 @@ public class Book extends BaseObject implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="CATEGORY_ID") 
-
 	private Category category;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="BOOK_ID") 
-	private Book book;
-
 	@OneToMany(mappedBy="book")
 	private Set <BookList> booklists;
 	public Book() {
@@ -114,12 +109,6 @@ public class Book extends BaseObject implements Serializable {
 	}
 
 
-	public Book getBook() {
-		return book;
-	}
-
-
-
 	public Category getCategory() {
 		return category;
 	}
@@ -127,11 +116,6 @@ public class Book extends BaseObject implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-
-	public void setBook(Book book) {
-		this.book = book;
 	}
 
 
@@ -143,8 +127,7 @@ public class Book extends BaseObject implements Serializable {
 		this.price = price;
 	}
 
-	public void setBookId(Long bookId) {
-		this.bookId = bookId;
+	public void setBookId(Long bookId) {		this.bookId = bookId;
 	}
 
 

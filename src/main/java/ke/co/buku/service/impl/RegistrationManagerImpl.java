@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.RegistrationDao;
 import ke.co.buku.model.UserRegistration;
+import ke.co.buku.service.RegistrationManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.UserRegistration;
  * date: 24/03/2017
  */
 @Service("registrationManager")
-public class RegistrationManagerImpl extends GenericManagerImpl<UserRegistration, Long> {
+public class RegistrationManagerImpl extends GenericManagerImpl<UserRegistration, Long> implements RegistrationManager {
 	RegistrationDao registrationDao;
 
     @Autowired
@@ -52,5 +53,6 @@ public class RegistrationManagerImpl extends GenericManagerImpl<UserRegistration
     public void removeUserRegistration(Integer registrationId){
     	registrationDao.removeUserRegistration(registrationId);
     }
+
 
 }

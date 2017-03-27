@@ -6,13 +6,8 @@
         <column>password</column>
         <column>first_name</column>
         <column>last_name</column>
-        <column>address</column>
-        <column>city</column>
-        <column>country</column>
         <column>email</column>
         <column>phone_number</column>
-        <column>postal_code</column>
-        <column>province</column>
         <column>website</column>
         <column>password_hint</column>
         <column>version</column>
@@ -24,17 +19,12 @@
             <value description="id">-1</value>
             <value description="username">user</value>
             <value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
-            <value description="first_name">Tomcat</value>
-            <value description="last_name">User</value>
-            <value description="address"></value>
-            <value description="city">Denver</value>
-            <value description="country">US</value>
-            <value description="email">matt_raible@yahoo.com</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://tomcat.apache.org</value>
-            <value description="password_hint"><![CDATA[A male kitty.]]></value>
+            <value description="first_name">Jude</value>
+            <value description="last_name">Kikuyu</value>
+            <value description="email">jkikuyu@gmail.com</value>
+            <value description="phone_number">07250124536</value>
+            <value description="website">zeno.co.ke</value>
+            <value description="password_hint"><![CDATA[drinky?]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
             <value description="account_expired">0</value>
@@ -45,17 +35,12 @@
             <value description="id">-2</value>
             <value description="username">admin</value>
             <value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
-            <value description="first_name">Matt</value>
-            <value description="last_name">Raible</value>
-            <value description="address"></value>
-            <value description="city">Denver</value>
-            <value description="country">US</value>
-            <value description="email">matt@raibledesigns.com</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://raibledesigns.com</value>
-            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="first_name">Jude</value>
+            <value description="last_name">Kikuyu</value>
+            <value description="email">jkikuyu@zeno.co.ke</value>
+            <value description="phone_number">0722732453</value>
+            <value description="website">www.buku.co.ke</value>
+            <value description="password_hint"><![CDATA[drink?]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
             <value description="account_expired">0</value>
@@ -64,19 +49,14 @@
         </row>
         <row>
             <value description="id">-3</value>
-            <value description="username">two_roles_user</value>
+            <value description="username">testuser</value>
             <value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
-            <value description="first_name">Two Roles</value>
+            <value description="first_name">Test</value>
             <value description="last_name">User</value>
-            <value description="address"></value>
-            <value description="city">Denver</value>
-            <value description="country">US</value>
-            <value description="email">two_roles_user@appfuse.org</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://raibledesigns.com</value>
-            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+            <value description="email">testuserr@abc.com</value>
+            <value description="phone_number">0733607042</value>
+            <value description="website">www.google.com</value>
+            <value description="password_hint"><![CDATA[Which town were you born in?]]></value>
             <value description="version">1</value>
             <value description="account_enabled">1</value>
             <value description="account_expired">0</value>

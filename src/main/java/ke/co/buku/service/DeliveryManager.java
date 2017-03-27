@@ -15,7 +15,7 @@ public interface DeliveryManager extends GenericManager<Delivery, Long> {
     /**
      * {@inheritDoc}
      */
-    List <Delivery> getDelivery();
+    List <Delivery> getDeliveries();
 
     /**
      * {@inheritDoc}

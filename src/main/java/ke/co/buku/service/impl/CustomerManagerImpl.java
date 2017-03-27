@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.CustomerDao;
 import ke.co.buku.model.Customer;
+import ke.co.buku.service.CustomerManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.Customer;
  * date: 24/03/2017
  */
 @Service("customerManager")
-public class CustomerManagerImpl extends GenericManagerImpl<Customer, Long> {
+public class CustomerManagerImpl extends GenericManagerImpl<Customer, Long> implements CustomerManager{
 	CustomerDao customerDao;
 
     @Autowired
@@ -28,21 +29,21 @@ public class CustomerManagerImpl extends GenericManagerImpl<Customer, Long> {
     /**
      * {@inheritDoc}
      */
-	List <Customer> getCustomers(){
+	public List <Customer> getCustomers(){
 		return dao.getAll();
 	}
 
     /**
      * {@inheritDoc}
      */
-    Customer getCustomer(Integer customerId){
+    public Customer getCustomer(Integer customerId){
     	return customerDao.getCustomer(customerId);
     }
 
     /**
      * {@inheritDoc}
      */
-    Customer saveCustomer(Customer customer){
+    public Customer saveCustomer(Customer customer){
     	return dao.save(customer);
     }
 

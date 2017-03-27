@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp" %>
-
+<link rel="stylesheet" type="text/css" href="/styles/bootstrap.css">
 <head>
     <title><fmt:message key="login.title"/></title>
     <meta name="menu" content="Login"/>
@@ -27,7 +27,7 @@
         <fmt:message key="login.rememberMe"/></label>
 </c:if>
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block" name="login" tabindex="4">
+    <button type="submit" class="btn btn-default" name="login" tabindex="4">
         <fmt:message key='button.login'/>
     </button>
 </form>

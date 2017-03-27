@@ -27,7 +27,7 @@ import java.util.Map;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 @Service("userManager")
-@WebService(serviceName = "UserService", endpointInterface = "ke.co.buku.service.UserService")
+@WebService(serviceName = "userService", endpointInterface = "ke.co.buku.service.UserService")
 public class UserManagerImpl extends GenericManagerImpl<User, Long> implements UserManager, UserService {
     private PasswordEncoder passwordEncoder;
     private UserDao userDao;

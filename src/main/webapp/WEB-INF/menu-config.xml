@@ -8,10 +8,26 @@
         <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
+        
+        	<Item name="AddRole" title="menu.admin.role" page="/admin/roles"/>
+        	<Item name="AddType" title="menu.admin.type" page="/admin/types"/>
+        	<Item name="AddCategory" title="menu.admin.category" page="/admin/category"/>
+        	<Item name="AddStatus" title="menu.admin.status" page="/admin/status"/>
+        	<Item name="AddSchool" title="menu.admin.school" page="/admin/school"/>
+			<Item name="AddClass" title="menu.admin.class" page="/admin/school"/>
+            <Item name="AddMode" title="menu.admin.paymode" page="/admin/paymode"/>
+            <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
+<!--             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
+            <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
+ -->            
+        </Menu>
+        <Menu name="PublisherMenu" title="menu.publisher" description="Publish Menu" roles="ROLE_PUBLISHER" page="/admin/users">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
             <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
         </Menu>
+        
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
 </MenuConfig>

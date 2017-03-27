@@ -3,10 +3,12 @@ package ke.co.buku.dao.hibernate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.SchoolDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.School;
-
+@Repository("schoolDao")
 public class SchoolDaoHibernate extends GenericDaoHibernate<School, Long> implements SchoolDao {
 
 	public SchoolDaoHibernate() {

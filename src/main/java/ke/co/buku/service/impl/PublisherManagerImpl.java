@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.PublisherDao;
 import ke.co.buku.model.Publisher;
+import ke.co.buku.service.PublisherManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.Publisher;
  * date: 24/03/2017
  */
 @Service("publisherManager")
-public class PublisherManagerImpl extends GenericManagerImpl<Publisher, Long> {
+public class PublisherManagerImpl extends GenericManagerImpl<Publisher, Long> implements PublisherManager {
 	PublisherDao publisherDao;
 
     @Autowired
@@ -53,6 +54,12 @@ public class PublisherManagerImpl extends GenericManagerImpl<Publisher, Long> {
     public void removePublisher(Integer publisherId){
     	publisherDao.removePublisher(publisherId);
     }
+
+	@Override
+	public List<Publisher> getPublisher() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

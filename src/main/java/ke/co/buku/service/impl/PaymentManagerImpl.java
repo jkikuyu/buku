@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.PaymentDao;
 import ke.co.buku.model.Payment;
+import ke.co.buku.service.PaymentManager;
 /**
  * Business Service Interface to handle communication between web and
  * persistence layer.
@@ -15,7 +16,7 @@ import ke.co.buku.model.Payment;
  * date: 24/03/2017
  */
 @Service("paymentManager")
-public class PaymentManagerImpl extends GenericManagerImpl<Payment, Long> {
+public class PaymentManagerImpl extends GenericManagerImpl<Payment, Long> implements  PaymentManager{
 	PaymentDao paymentDao;
 
     @Autowired

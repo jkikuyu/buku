@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ke.co.buku.dao.BookListDao;
 import ke.co.buku.dao.OrderDao;
 import ke.co.buku.model.Order;
+import ke.co.buku.service.OrderManager;
 /**
  * Business Service Interface to handle communication between web and
  * persistence layer.
@@ -16,7 +16,7 @@ import ke.co.buku.model.Order;
  * date: 24/03/2017
  */
 @Service("orderManager")
-public class OrderManagerImpl extends GenericManagerImpl<Order, Long> {
+public class OrderManagerImpl extends GenericManagerImpl<Order, Long> implements OrderManager{
 	OrderDao orderDao;
 
     @Autowired
@@ -28,21 +28,21 @@ public class OrderManagerImpl extends GenericManagerImpl<Order, Long> {
 	/**
      * {@inheritDoc}
      */
-    List <Order> getOrders(){
+    public List <Order> getOrders(){
     	return dao.getAll();
     }
 
     /**
      * {@inheritDoc}
      */
-    Order getOrder(Integer orderId){
+    public Order getOrder(Integer orderId){
     	return orderDao.getOrder(orderId);
     }
 
     /**
      * {@inheritDoc}
      */
-    Order saveOrder(Order order){
+    public Order saveOrder(Order order){
     	return dao.save(order);
     }
 

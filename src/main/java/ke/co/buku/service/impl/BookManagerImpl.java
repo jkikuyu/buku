@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.BookDao;
 import ke.co.buku.model.Book;
+import ke.co.buku.service.BookManager;
 /**
  * Business Service Interface to handle communication between web and
  * persistence layer.
@@ -16,7 +17,7 @@ import ke.co.buku.model.Book;
  */
 @Service("bookManager")
 
-public class BookManagerImpl extends GenericManagerImpl<Book, Long> {
+public class BookManagerImpl extends GenericManagerImpl<Book, Long> implements BookManager{
 	BookDao bookDao;
 
     @Autowired
@@ -28,7 +29,7 @@ public class BookManagerImpl extends GenericManagerImpl<Book, Long> {
     /**
      * {@inheritDoc}
      */
-    List <Book> getBooks(){
+    public List <Book> getBooks(){
 		return dao.getAll();
     	
     }
@@ -36,7 +37,7 @@ public class BookManagerImpl extends GenericManagerImpl<Book, Long> {
     /**
      * {@inheritDoc}
      */
-    Book getBook(Integer bookId){
+    public Book getBook(Integer bookId){
     	return bookDao.getBook(bookId);
     	
     }
@@ -44,14 +45,14 @@ public class BookManagerImpl extends GenericManagerImpl<Book, Long> {
     /**
      * {@inheritDoc}
      */
-    Book saveBook(Book book){
+    public Book saveBook(Book book){
     	return dao.save(book);
     }
 
     /**
      * {@inheritDoc}
      */
-    void removeBook(Integer bookId){
+    public void removeBook(Integer bookId){
     	bookDao.removeBook(bookId);
     	
     }

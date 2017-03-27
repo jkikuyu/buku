@@ -2,7 +2,6 @@ package ke.co.buku.service;
 
 import java.util.List;
 
-import ke.co.buku.model.BookList;
 import ke.co.buku.model.Publisher;
 
 /**
@@ -16,7 +15,7 @@ public interface PublisherManager extends GenericManager<Publisher, Long> {
     /**
      * {@inheritDoc}
      */
-    List getBookLists(Publisher publisher);
+    List <Publisher>getPublisher();
 
     /**
      * {@inheritDoc}

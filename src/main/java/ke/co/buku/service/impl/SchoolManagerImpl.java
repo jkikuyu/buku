@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.SchoolDao;
 import ke.co.buku.model.School;
+import ke.co.buku.service.SchoolManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -17,7 +18,7 @@ import ke.co.buku.model.School;
  */
 @Service("schoolManager")
 
-public class SchoolManagerImpl extends GenericManagerImpl<School, Long> {
+public class SchoolManagerImpl extends GenericManagerImpl<School, Long> implements SchoolManager{
 	SchoolDao schoolDao;
 
     @Autowired

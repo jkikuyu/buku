@@ -3,10 +3,12 @@ package ke.co.buku.dao.hibernate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.LocationDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.Location;
-
+@Repository("locationDao")
 public class LocationDaoHibernate extends GenericDaoHibernate<Location, Long> implements LocationDao {
 
 	public LocationDaoHibernate() {

@@ -2,8 +2,9 @@
 
 <head>
     <title><fmt:message key="userList.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
-</head>
+<!--     <meta name="menu" content="AdminMenu"/>
+ -->
+ </head>
 
 <c:if test="${not empty searchError}">
     <div class="alert alert-danger alert-dismissable">

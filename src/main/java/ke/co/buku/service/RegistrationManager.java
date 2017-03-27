@@ -2,7 +2,6 @@ package ke.co.buku.service;
 
 import java.util.List;
 
-import ke.co.buku.model.Publisher;
 import ke.co.buku.model.UserRegistration;
 
 /**
@@ -16,7 +15,7 @@ public interface RegistrationManager extends GenericManager<UserRegistration, Lo
     /**
      * {@inheritDoc}
      */
-    List getUserRegistrations(UserRegistration userRegistration);
+    List <UserRegistration> getUserRegistrations();
 
     /**
      * {@inheritDoc}

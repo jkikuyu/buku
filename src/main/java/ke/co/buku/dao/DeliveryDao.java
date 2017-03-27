@@ -15,7 +15,7 @@ public interface DeliveryDao extends GenericDao<Delivery, Long> {
     /**
      * {@inheritDoc}
      */
-	public List <Delivery> getDelivery();
+	public List <Delivery> getDeliveries();
 
     /**
      * {@inheritDoc}

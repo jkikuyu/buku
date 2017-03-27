@@ -3,10 +3,12 @@ package ke.co.buku.dao.hibernate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.RegistrationDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.UserRegistration;
-
+@Repository("registrationDao")
 public class RegistrationDaoHibernate extends GenericDaoHibernate<UserRegistration, Long> implements RegistrationDao {
 
 	public RegistrationDaoHibernate() {

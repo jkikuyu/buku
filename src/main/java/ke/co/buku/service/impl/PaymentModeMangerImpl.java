@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.PaymentModeDao;
 import ke.co.buku.model.PaymentMode;
+import ke.co.buku.service.PaymentModeManger;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.PaymentMode;
  * date: 24/03/2017
  */
 @Service("paymentModeManger")
-public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long> {
+public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long> implements PaymentModeManger{
 	PaymentModeDao paymentModeDao;
 
     @Autowired
@@ -28,14 +29,14 @@ public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long>
 	/**
      * {@inheritDoc}
      */
-    List <PaymentMode> getPaymentModes(){
+    public List <PaymentMode> getPaymentModes(){
     	return dao.getAll();
     }
 
     /**
      * {@inheritDoc}
      */
-    PaymentMode getPaymentMode(Integer modeId){
+    public PaymentMode getPaymentMode(Integer modeId){
     	return paymentModeDao.getPaymentMode(modeId);
     }
 

@@ -102,7 +102,7 @@ public class DeliveryDaoHibernate extends GenericDaoHibernate<Delivery, Long> im
 	}
 
 	@Override
-	public List<Delivery> getDelivery() {
+	public List<Delivery> getDeliveries() {
 		// TODO Auto-generated method stub
 		return null;
 	}

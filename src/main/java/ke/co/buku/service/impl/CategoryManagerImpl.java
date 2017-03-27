@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.CategoryDao;
 import ke.co.buku.model.Category;
+import ke.co.buku.service.CategoryManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.Category;
  * date: 24/03/2017
  */
 @Service("categoryManager")
-public class CategoryManagerImpl extends GenericManagerImpl<Category, Long> {
+public class CategoryManagerImpl extends GenericManagerImpl<Category, Long> implements CategoryManager {
 	CategoryDao categoryDao;
 
     @Autowired
@@ -29,21 +30,21 @@ public class CategoryManagerImpl extends GenericManagerImpl<Category, Long> {
      * {@inheritDoc}
      */
 	
-	List <Category>getCategories(){
+	public List <Category>getCategories(){
 		return dao.getAll();
 	}
 
 	    /**
 	     * {@inheritDoc}
 	     */
-	  Category getCategory(Integer categoryId){
+	  public Category getCategory(Integer categoryId){
 		  return categoryDao.getCategory(categoryId);
 	  }
 
 	    /**
 	     * {@inheritDoc}
 	     */
-	  Category saveCategory(Category category){
+	  public Category saveCategory(Category category){
 		  return dao.save(category);
 	  }
 

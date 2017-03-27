@@ -6,7 +6,24 @@
 
 <hibernate-configuration>
     <session-factory>
+        <mapping class="ke.co.buku.model.Book"/>
+        <mapping class="ke.co.buku.model.BookList"/>
+        <mapping class="ke.co.buku.model.BookStore"/>
+        <mapping class="ke.co.buku.model.Category"/>
+    	<mapping class="ke.co.buku.model.Class"/>
+        <mapping class="ke.co.buku.model.Customer"/>
+        <mapping class="ke.co.buku.model.Delivery"/>
+        <mapping class="ke.co.buku.model.Location"/>
+        <mapping class="ke.co.buku.model.Order"/>
+        <mapping class="ke.co.buku.model.Payment"/>
+        <mapping class="ke.co.buku.model.PaymentMode"/>
+        <mapping class="ke.co.buku.model.Publisher"/>
+        <mapping class="ke.co.buku.model.UserRegistration"/>
+    	<mapping class="ke.co.buku.model.Role"/>
+        <mapping class="ke.co.buku.model.School"/>
+        <mapping class="ke.co.buku.model.Status"/>
+        <mapping class="ke.co.buku.model.Teacher"/>
         <mapping class="ke.co.buku.model.User"/>
-        <mapping class="ke.co.buku.model.Role"/>
+        <mapping class="ke.co.buku.model.UserType"/>
     </session-factory>
 </hibernate-configuration>

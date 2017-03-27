@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.LocationDao;
 import ke.co.buku.model.Location;
+import ke.co.buku.service.LocationManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +17,7 @@ import ke.co.buku.model.Location;
  * date: 24/03/2017
  */
 @Service("locationManager")
-public class LocationManagerImpl extends GenericManagerImpl<Location, Long> {
+public class LocationManagerImpl extends GenericManagerImpl<Location, Long> implements LocationManager{
 	LocationDao locationDao;
 
     @Autowired
@@ -36,14 +37,14 @@ public class LocationManagerImpl extends GenericManagerImpl<Location, Long> {
     /**
      * {@inheritDoc}
      */
-    Location getLocation(Integer locationId){
+    public Location getLocation(Integer locationId){
     	return locationDao.getLocation(locationId);
     }
 
     /**
      * {@inheritDoc}
      */
-    Location saveLocation(Location location){
+    public Location saveLocation(Location location){
     	return dao.save(location);
     }
 
@@ -54,6 +55,13 @@ public class LocationManagerImpl extends GenericManagerImpl<Location, Long> {
     	locationDao.removeLocation(locationId);
     	
     }
+
+	@Override
+	public List<Location> getLocations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

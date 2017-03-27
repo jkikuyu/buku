@@ -31,7 +31,7 @@ public interface LocationManager extends GenericManager<Location, Long> {
     /**
      * {@inheritDoc}
      */
-    void removeBook(Integer locationId);
+    void removeLocation(Integer locationId);
 
 
 }

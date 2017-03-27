@@ -10,12 +10,12 @@ public interface UserTypeManager extends GenericManager<UserType, Long> {
      * {@inheritDoc}
      */
 
-    List getUserTypes(UserType userType);
+    List <UserType>getUserTypes();
 
     /**
      * {@inheritDoc}
      */
-    UserType getSchool(Integer userTypeId);
+    UserType getUserType(Integer userTypeId);
 
     /**
      * {@inheritDoc}

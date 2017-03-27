@@ -34,7 +34,7 @@ public class Delivery extends BaseObject implements Serializable {
     @DocumentId
 	private Long deliveryId;
 	
-	@Field
+
 	@OneToMany(mappedBy="delivery")
 	private Set<Order>orders;
 

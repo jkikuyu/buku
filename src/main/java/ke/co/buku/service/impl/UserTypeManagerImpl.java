@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.UserTypeDao;
 import ke.co.buku.model.UserType;
+import ke.co.buku.service.UserTypeManager;
 
-@Service("UserTypeManager")
-public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> {
+@Service("userTypeManager")
+public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> implements UserTypeManager{
 	
 	UserTypeDao userTypeDao;
 
@@ -22,32 +23,28 @@ public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> {
     /**
      * {@inheritDoc}
      */
-
-    List <UserType> getUserTypes(){
-    	return dao.getAll();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    UserType  getUserType(Integer userTypeId){
-    	return userTypeDao.getUserType(userTypeId);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    UserType saveUserType(UserType userType){
+    public UserType saveUserType(UserType userType){
     	return dao.save(userType);
     }
 
     /**
      * {@inheritDoc}
      */
-    void removeUserType(Integer userTypeId){
+    public void removeUserType(Integer userTypeId){
     	userTypeDao.removeUserType(userTypeId);
     }
 
+	@Override
+	public List<UserType> getUserTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserType getUserType(Integer userTypeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

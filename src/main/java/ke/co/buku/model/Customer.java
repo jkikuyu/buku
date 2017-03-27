@@ -78,6 +78,12 @@ public class Customer extends BaseObject implements Serializable {
 	public Location getLocation() {
 		return location;
 	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
 	}

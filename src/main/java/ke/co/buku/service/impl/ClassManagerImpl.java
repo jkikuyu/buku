@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ke.co.buku.dao.BookListDao;
 import ke.co.buku.dao.ClassDao;
+import ke.co.buku.service.ClassManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,7 +16,7 @@ import ke.co.buku.dao.ClassDao;
  * date: 24/03/2017
  */
 @Service("classManager")
-public class ClassManagerImpl extends GenericManagerImpl<Class, Long> {
+public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements ClassManager{
 	ClassDao classDao;
 
     @Autowired
@@ -28,21 +28,21 @@ public class ClassManagerImpl extends GenericManagerImpl<Class, Long> {
 	/**
      * {@inheritDoc}
      */
-	List <Class> getClasses(){
+	public List <Class> getClasses(){
 		return dao.getAll();
 	}
 
     /**
      * {@inheritDoc}
      */
-	Class getClass(Integer classId){
+	public Class getClass(Integer classId){
 		return classDao.getClass(classId);
 	}
 
     /**
      * {@inheritDoc}
      */
-	Class saveClass(Class clasz){
+	public Class saveClass(Class clasz){
 		return dao.save(clasz);
 	}
 

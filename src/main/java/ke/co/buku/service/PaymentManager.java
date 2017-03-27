@@ -2,7 +2,6 @@ package ke.co.buku.service;
 
 import java.util.List;
 
-import ke.co.buku.model.Order;
 import ke.co.buku.model.Payment;
 /**
  * Business Service Interface to handle communication between web and
@@ -22,12 +21,12 @@ public interface PaymentManager extends GenericManager<Payment, Long> {
     /**
      * {@inheritDoc}
      */
-    Order getPayment(Integer paymentId);
+    Payment getPayment(Integer paymentId);
 
     /**
      * {@inheritDoc}
      */
-    Order savePayment(Payment payment);
+    Payment savePayment(Payment payment);
 
     /**
      * {@inheritDoc}

@@ -3,10 +3,12 @@ package ke.co.buku.dao.hibernate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.PublisherDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.Publisher;
-
+@Repository("publisherDao")
 public class PublisherDaoHibernate extends GenericDaoHibernate<Publisher, Long> implements PublisherDao {
 
 	public PublisherDaoHibernate() {

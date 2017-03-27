@@ -3,10 +3,12 @@ package ke.co.buku.dao.hibernate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.PaymentModeDao;
 import ke.co.buku.dao.SearchException;
 import ke.co.buku.model.PaymentMode;
-
+@Repository("paymentModeDao")
 public class PaymentModeDaoHibernate extends GenericDaoHibernate<PaymentMode, Long> implements PaymentModeDao {
 
 	public PaymentModeDaoHibernate() {
