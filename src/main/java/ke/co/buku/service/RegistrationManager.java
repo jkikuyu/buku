@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.RegistrationDao;
 import ke.co.buku.model.UserRegistration;
 
 /**
@@ -13,6 +14,13 @@ import ke.co.buku.model.UserRegistration;
  */
 public interface RegistrationManager extends GenericManager<UserRegistration, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param registrationDao the RegistrationDao implementation to use
+     */
+
+	void setRegistrationDao(RegistrationDao registrationDao);
+
+	/**
      * {@inheritDoc}
      */
     List <UserRegistration> getUserRegistrations();

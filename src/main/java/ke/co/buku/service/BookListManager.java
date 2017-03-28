@@ -2,7 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
-import ke.co.buku.model.Book;
+import ke.co.buku.dao.BookListDao;
 import ke.co.buku.model.BookList;
 /**
  * Business Service Interface to handle communication between web and
@@ -13,6 +13,14 @@ import ke.co.buku.model.BookList;
  */
 
 public interface BookListManager extends GenericManager<BookList, Long> {
+	
+    /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param userDao the UserDao implementation to use
+     */
+
+	void setBookListDao(BookListDao bookListDao);
+
     /**
      * {@inheritDoc}
      */

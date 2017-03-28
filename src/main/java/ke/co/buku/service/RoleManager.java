@@ -1,8 +1,9 @@
 package ke.co.buku.service;
 
-import ke.co.buku.model.Role;
-
 import java.util.List;
+
+import ke.co.buku.dao.RoleDao;
+import ke.co.buku.model.Role;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -12,6 +13,13 @@ import java.util.List;
  */
 public interface RoleManager extends GenericManager<Role, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param roleDao the RoleDao implementation to use
+     */
+
+	void setRoleDao(RoleDao roleDao);
+
+	/**
      * {@inheritDoc}
      */
     List <Role>getRoles();
@@ -30,4 +38,11 @@ public interface RoleManager extends GenericManager<Role, Long> {
      * {@inheritDoc}
      */
     void removeRole(String rolename);
+    /**
+     * Search a user for search terms.
+     * @param searchTerm the search terms.
+     * @return a list of matches, or all if no searchTerm.
+     */
+    List<Role> search(String searchTerm);
+
 }

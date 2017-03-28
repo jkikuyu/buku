@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.LocationDao;
 import ke.co.buku.model.Location;
 
 /**
@@ -13,6 +14,13 @@ import ke.co.buku.model.Location;
  */
 public interface LocationManager extends GenericManager<Location, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param locationDao the LocationDao implementation to use
+     */
+
+	void setLocationDao(LocationDao locationDao);
+
+	/**
      * {@inheritDoc}
      */
 	

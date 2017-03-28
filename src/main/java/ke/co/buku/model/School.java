@@ -42,9 +42,12 @@ public class School extends BaseObject implements Serializable{
     @DocumentId
 	private Long schoolId;
 	
-	@Column(nullable = false, length = 100, unique = true)
+	@Column(nullable = false, length = 25, unique = true)
     @Field
-	private String schoolName;
+	private String shortName;
+	@Column(nullable = false, length = 50, unique = true)
+    @Field
+	private String longName;
 	
     @Embedded
     @IndexedEmbedded
@@ -78,10 +81,7 @@ public class School extends BaseObject implements Serializable{
 		return schoolId;
 	}
  
-	public String getSchoolName() {
-		return schoolName;
-	}
-    
+   
     public Address getAddress() {
 		return address;
 	}
@@ -107,6 +107,18 @@ public class School extends BaseObject implements Serializable{
 		return classes;
 	}
 
+	public String getShortName() {
+		return shortName;
+	}
+	public String getLongName() {
+		return longName;
+	}
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+	public void setLongName(String longName) {
+		this.longName = longName;
+	}
 	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
 	}
@@ -117,10 +129,6 @@ public class School extends BaseObject implements Serializable{
 
 	public void setSchoolId(Long schoolId) {
 		this.schoolId = schoolId;
-	}
-
-	public void setSchoolName(String schoolName) {
-		this.schoolName = schoolName;
 	}
 
 	public void setAddress(Address address) {

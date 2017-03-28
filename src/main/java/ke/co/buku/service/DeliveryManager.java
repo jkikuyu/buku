@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.DeliveryDao;
 import ke.co.buku.model.Delivery;
 
 /**
@@ -13,6 +14,13 @@ import ke.co.buku.model.Delivery;
  */
 public interface DeliveryManager extends GenericManager<Delivery, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param deliveryDao the DeliveryDao implementation to use
+     */
+
+	void setDeliveryDao(DeliveryDao deliveryDao);
+
+	/**
      * {@inheritDoc}
      */
     List <Delivery> getDeliveries();

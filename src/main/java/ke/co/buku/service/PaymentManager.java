@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.PaymentDao;
 import ke.co.buku.model.Payment;
 /**
  * Business Service Interface to handle communication between web and
@@ -12,6 +13,12 @@ import ke.co.buku.model.Payment;
  */
 
 public interface PaymentManager extends GenericManager<Payment, Long> {
+    /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param PaymentDao the PaymentDao implementation to use
+     */
+
+	void setPaymentDao(PaymentDao PaymentDao);
 	
     /**
      * {@inheritDoc}

@@ -18,14 +18,21 @@ import ke.co.buku.service.CategoryManager;
  */
 @Service("categoryManager")
 public class CategoryManagerImpl extends GenericManagerImpl<Category, Long> implements CategoryManager {
-	CategoryDao categoryDao;
-
+	private CategoryDao categoryDao;
+	
+	@Override
     @Autowired
-    public CategoryManagerImpl(CategoryDao categoryDao) {
+	public void setCategoryDao(CategoryDao categoryDao) {
+        this.dao = categoryDao;
+        this.categoryDao = categoryDao;
+		
+	}
+
+/*    public CategoryManagerImpl(CategoryDao categoryDao) {
         super(categoryDao);
         this.categoryDao = categoryDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -55,4 +62,11 @@ public class CategoryManagerImpl extends GenericManagerImpl<Category, Long> impl
 	    	categoryDao.removeCategory(categoryId);
 	    	
 	    }
+
+		@Override
+		public List<Category> search(String searchTerm) {
+			// TODO Auto-generated method stub
+	        return super.search(searchTerm, Category.class);
+		}
+
 }

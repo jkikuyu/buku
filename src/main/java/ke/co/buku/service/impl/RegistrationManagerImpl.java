@@ -18,14 +18,22 @@ import ke.co.buku.service.RegistrationManager;
  */
 @Service("registrationManager")
 public class RegistrationManagerImpl extends GenericManagerImpl<UserRegistration, Long> implements RegistrationManager {
-	RegistrationDao registrationDao;
+	private RegistrationDao registrationDao;
 
-    @Autowired
-    public RegistrationManagerImpl(RegistrationDao registrationDao) {
+    
+	@Override
+	@Autowired
+	public void setRegistrationDao(RegistrationDao registrationDao) {
+        this.dao = registrationDao;
+        this.registrationDao = registrationDao;
+		
+	}
+
+/*    public RegistrationManagerImpl(RegistrationDao registrationDao) {
         super(registrationDao);
         this.registrationDao = registrationDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -53,6 +61,7 @@ public class RegistrationManagerImpl extends GenericManagerImpl<UserRegistration
     public void removeUserRegistration(Integer registrationId){
     	registrationDao.removeUserRegistration(registrationId);
     }
+
 
 
 }

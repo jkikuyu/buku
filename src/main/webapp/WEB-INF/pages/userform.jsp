@@ -92,7 +92,7 @@
             <appfuse:label styleClass="control-label" key="user.website"/>
             <form:input cssClass="form-control" path="website" id="website"/>
         </div>
-        <div>
+<%--         <div>
             <legend class="accordion-heading">
                 <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
             </legend>
@@ -120,7 +120,9 @@
                     <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
                 </div>
             </div>
-        </div>
+             
+      </div> 
+      --%> 
 <c:choose>
     <c:when test="${param.from == 'list' or param.method == 'Add'}">
         <div class="form-group">

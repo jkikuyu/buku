@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.ClassDao;
+import ke.co.buku.model.Status;
+import ke.co.buku.model.Teacher;
 import ke.co.buku.service.ClassManager;
 
 /**
@@ -19,12 +21,21 @@ import ke.co.buku.service.ClassManager;
 public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements ClassManager{
 	ClassDao classDao;
 
-    @Autowired
-    public ClassManagerImpl(ClassDao classDao) {
+   
+	@Override
+	@Autowired
+	public void setClassDao(ClassDao classDao) {
+        this.dao = classDao;
+        this.classDao = classDao;
+		
+	}
+
+
+/*    public ClassManagerImpl(ClassDao classDao) {
         super(classDao);
         this.classDao = classDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -52,6 +63,13 @@ public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements
     public void removeClass(Integer classId){
     	classDao.removeClass(classId);
     }
+
+
+	@Override
+	public List<Class> search(String searchTerm) {
+		// TODO Auto-generated method stub
+        return super.search(searchTerm, Class.class);
+	}
 
 
 }

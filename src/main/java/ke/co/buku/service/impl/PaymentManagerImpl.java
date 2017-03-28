@@ -17,14 +17,21 @@ import ke.co.buku.service.PaymentManager;
  */
 @Service("paymentManager")
 public class PaymentManagerImpl extends GenericManagerImpl<Payment, Long> implements  PaymentManager{
-	PaymentDao paymentDao;
+	private PaymentDao paymentDao;
+	@Override
+	@Autowired
+	public void setPaymentDao(PaymentDao paymentDao) {
+        this.dao = paymentDao;
+        this.paymentDao = paymentDao;
+		
+	}
 
-    @Autowired
-    public PaymentManagerImpl(PaymentDao paymentDao) {
+    
+/*    public PaymentManagerImpl(PaymentDao paymentDao) {
         super(paymentDao);
         this.paymentDao = paymentDao;
     }
-
+*/
     /**
      * {@inheritDoc}
      */
@@ -52,6 +59,7 @@ public class PaymentManagerImpl extends GenericManagerImpl<Payment, Long> implem
     public void removePaymentr(Integer paymentId){
     	paymentDao.removePayment(paymentId);
     }
+
 
 
 }

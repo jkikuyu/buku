@@ -14,7 +14,7 @@
         	<Item name="AddCategory" title="menu.admin.category" page="/admin/category"/>
         	<Item name="AddStatus" title="menu.admin.status" page="/admin/status"/>
         	<Item name="AddSchool" title="menu.admin.school" page="/admin/school"/>
-			<Item name="AddClass" title="menu.admin.class" page="/admin/school"/>
+			<Item name="AddClass" title="menu.admin.class" page="/admin/class"/>
             <Item name="AddMode" title="menu.admin.paymode" page="/admin/paymode"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
 <!--             <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>

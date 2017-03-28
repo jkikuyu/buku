@@ -29,7 +29,7 @@ import org.hibernate.search.annotations.Indexed;
 
  */
 @Entity
-@Table(name = "BOOKS")
+@Table(name = "BOOK")
 @Indexed
 @XmlRootElement
 @SequenceGenerator(allocationSize=1,name="sequence", sequenceName="BOOK_FCSEQ")
@@ -127,7 +127,8 @@ public class Book extends BaseObject implements Serializable {
 		this.price = price;
 	}
 
-	public void setBookId(Long bookId) {		this.bookId = bookId;
+	public void setBookId(Long bookId) {		
+		this.bookId = bookId;
 	}
 
 

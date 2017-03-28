@@ -18,14 +18,21 @@ import ke.co.buku.service.BookStoreManager;
  */
 @Service("bookStoreManager")
 public class BookStoreManagerImpl extends GenericManagerImpl<BookStore, Long> implements BookStoreManager{
-	BookStoreDao bookStoreDao;
+	private BookStoreDao bookStoreDao;
 
-    @Autowired
-    public BookStoreManagerImpl(BookStoreDao bookStoreDao) {
+	@Override
+	@Autowired
+	
+	public void setBookStoreDao(BookStoreDao bookStoreDao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+/*    public BookStoreManagerImpl(BookStoreDao bookStoreDao) {
         super(bookStoreDao);
         this.bookStoreDao = bookStoreDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -54,6 +61,7 @@ public class BookStoreManagerImpl extends GenericManagerImpl<BookStore, Long> im
     public void removeBookStore(Integer bookstoreId){
     	bookStoreDao.getBookStore(bookstoreId);
     }
+
     
 
 }

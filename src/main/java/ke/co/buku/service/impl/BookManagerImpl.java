@@ -19,13 +19,19 @@ import ke.co.buku.service.BookManager;
 
 public class BookManagerImpl extends GenericManagerImpl<Book, Long> implements BookManager{
 	BookDao bookDao;
-
+	@Override
     @Autowired
-    public BookManagerImpl(BookDao bookDao) {
+	public void setBookDao(BookDao bookDao) {
+        this.dao = bookDao;
+        this.bookDao = bookDao;
+		
+	}
+
+/*    public BookManagerImpl(BookDao bookDao) {
         super(bookDao);
         this.bookDao = bookDao;
     }
-
+*/
     /**
      * {@inheritDoc}
      */
@@ -56,5 +62,6 @@ public class BookManagerImpl extends GenericManagerImpl<Book, Long> implements B
     	bookDao.removeBook(bookId);
     	
     }
+
 }
 

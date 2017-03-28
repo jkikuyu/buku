@@ -20,12 +20,19 @@ import ke.co.buku.service.CustomerManager;
 public class CustomerManagerImpl extends GenericManagerImpl<Customer, Long> implements CustomerManager{
 	CustomerDao customerDao;
 
+	@Override
     @Autowired
-    public CustomerManagerImpl(CustomerDao customerDao) {
+	public void setCustomerDao(CustomerDao customerDao) {
+        this.dao = customerDao;
+        this.customerDao = customerDao;
+		
+	}
+
+/*    public CustomerManagerImpl(CustomerDao customerDao) {
         super(customerDao);
         this.customerDao = customerDao;
     }
-
+*/
     /**
      * {@inheritDoc}
      */

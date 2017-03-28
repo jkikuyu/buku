@@ -18,14 +18,20 @@ import ke.co.buku.service.DeliveryManager;
  */
 @Service("deliveryManager")
 public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> implements DeliveryManager{
-	DeliveryDao deliveryDao;
+	private DeliveryDao deliveryDao;
 
-    @Autowired
-    public DeliveryManagerImpl(DeliveryDao deliveryDao) {
+	@Override
+	@Autowired
+	public void setDeliveryDao(DeliveryDao deliveryDao) {
+        this.dao = deliveryDao;
+        this.deliveryDao = deliveryDao;
+		
+	}
+/*    public DeliveryManagerImpl(DeliveryDao deliveryDao) {
         super(deliveryDao);
         this.deliveryDao = deliveryDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -53,7 +59,6 @@ public class DeliveryManagerImpl extends GenericManagerImpl<Delivery, Long> impl
     public void removeDelivery(Integer deliveryId){
     	deliveryDao.removeDelivery(deliveryId);
     }
-
 
 
 }

@@ -17,14 +17,22 @@ import ke.co.buku.service.OrderManager;
  */
 @Service("orderManager")
 public class OrderManagerImpl extends GenericManagerImpl<Order, Long> implements OrderManager{
-	OrderDao orderDao;
+	private OrderDao orderDao;
 
-    @Autowired
-    public OrderManagerImpl(OrderDao orderDao) {
+	@Override
+	@Autowired
+	public void setOrderDao(OrderDao orderDao) {
+        this.dao = orderDao;
+        this.orderDao = orderDao;
+		
+	}
+
+	
+/*    public OrderManagerImpl(OrderDao orderDao) {
         super(orderDao);
         this.orderDao = orderDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -52,6 +60,7 @@ public class OrderManagerImpl extends GenericManagerImpl<Order, Long> implements
     public void removeOrder(Integer orderId){
     	orderDao.removeOrder(orderId);
     }
+
 
 
 }

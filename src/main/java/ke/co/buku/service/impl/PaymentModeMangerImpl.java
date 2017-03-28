@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.PaymentModeDao;
 import ke.co.buku.model.PaymentMode;
+import ke.co.buku.model.User;
 import ke.co.buku.service.PaymentModeManger;
 
 /**
@@ -18,14 +19,22 @@ import ke.co.buku.service.PaymentModeManger;
  */
 @Service("paymentModeManger")
 public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long> implements PaymentModeManger{
-	PaymentModeDao paymentModeDao;
-
+	private PaymentModeDao paymentModeDao;
+  
+	@Override
     @Autowired
-    public PaymentModeMangerImpl(PaymentModeDao paymentModeDao) {
+	public void setPaymentModeDao(PaymentModeDao paymentModeDao) {
+        this.dao = paymentModeDao;
+        this.paymentModeDao = paymentModeDao;
+		
+	}
+
+
+/*    public PaymentModeMangerImpl(PaymentModeDao paymentModeDao) {
         super(paymentModeDao);
         this.paymentModeDao = paymentModeDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -53,6 +62,12 @@ public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long>
     public void removePaymentMode(Integer modeId){
     	paymentModeDao.removePaymentMode(modeId);
     }
+
+
+	@Override
+	public List<PaymentMode> search(String searchTerm) {
+        return super.search(searchTerm, PaymentMode.class);
+	}
 
 
 }

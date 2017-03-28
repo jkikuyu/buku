@@ -18,14 +18,21 @@ import ke.co.buku.service.PublisherManager;
  */
 @Service("publisherManager")
 public class PublisherManagerImpl extends GenericManagerImpl<Publisher, Long> implements PublisherManager {
-	PublisherDao publisherDao;
+	private PublisherDao publisherDao;
 
+	@Override
     @Autowired
-    public PublisherManagerImpl(PublisherDao publisherDao) {
+	public void setPublisherDao(PublisherDao publisherDao) {
+        this.dao = publisherDao;
+        this.publisherDao = publisherDao;
+		
+	}
+
+/*    public PublisherManagerImpl(PublisherDao publisherDao) {
         super(publisherDao);
         this.publisherDao = publisherDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */

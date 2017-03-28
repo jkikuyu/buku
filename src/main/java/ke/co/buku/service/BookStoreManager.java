@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.BookStoreDao;
 import ke.co.buku.model.BookStore;
 
 /**
@@ -13,6 +14,13 @@ import ke.co.buku.model.BookStore;
  */
 public interface BookStoreManager extends GenericManager<BookStore, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param bookStoreDao the BookStoreDao implementation to use
+     */
+
+	void setBookStoreDao(BookStoreDao bookStoreDao);
+
+	/**
      * {@inheritDoc}
      */
 

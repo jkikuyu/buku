@@ -18,14 +18,22 @@ import ke.co.buku.service.LocationManager;
  */
 @Service("locationManager")
 public class LocationManagerImpl extends GenericManagerImpl<Location, Long> implements LocationManager{
-	LocationDao locationDao;
+	private LocationDao locationDao;
 
-    @Autowired
-    public LocationManagerImpl(LocationDao locationDao) {
+    
+	@Override
+	@Autowired
+	public void setLocationDao(LocationDao locationDao) {
+        this.dao = locationDao;
+        this.locationDao = locationDao;
+		
+	}
+
+/*    public LocationManagerImpl(LocationDao locationDao) {
         super(locationDao);
         this.locationDao = locationDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -61,6 +69,7 @@ public class LocationManagerImpl extends GenericManagerImpl<Location, Long> impl
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 

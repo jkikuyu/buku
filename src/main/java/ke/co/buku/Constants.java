@@ -5,6 +5,8 @@ package ke.co.buku;
  * Constant values used throughout the application.
  *
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * modified by Jude Kikuyu <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu</a> 
+ * to include additional constants
  */
 public final class Constants {
 
@@ -53,6 +55,31 @@ public final class Constants {
      * The request scope attribute that holds the user list
      */
     public static final String USER_LIST = "userList";
+    /**
+     * The request scope attribute that holds the user type list
+     */
+    public static final String USERTYPE_LIST = "userTypeList";
+    /**
+     * The request scope attribute that holds the user list
+     */
+    public static final String CATEGORY_LIST = "categoryList";
+    /**
+     * The request scope attribute that holds the user list
+     */
+    public static final String STATUS_LIST = "statusList";
+    /**
+     * The request scope attribute that holds the user list
+     */
+    public static final String MODE_LIST = "modeList";
+    
+    /**
+     * The request scope attribute that holds the user list
+     */
+    public static final String SCHOOL_LIST = "schooList";
+    /**
+     * The request scope attribute that holds the user list
+     */
+    public static final String CLASS_LIST = "classList";
 
     /**
      * The request scope attribute for indicating a newly-registered user

@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.CustomerDao;
 import ke.co.buku.model.Customer;
 
 /**
@@ -13,7 +14,14 @@ import ke.co.buku.model.Customer;
  */
 
 public interface CustomerManager extends GenericManager<Customer, Long> {
-	
+
+    /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param customerDao the CustomerDao implementation to use
+     */
+
+	void setCustomerDao(CustomerDao customerDao);
+
     /**
      * {@inheritDoc}
      */

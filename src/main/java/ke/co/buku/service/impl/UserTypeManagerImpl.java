@@ -12,7 +12,15 @@ import ke.co.buku.service.UserTypeManager;
 @Service("userTypeManager")
 public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> implements UserTypeManager{
 	
-	UserTypeDao userTypeDao;
+	private UserTypeDao userTypeDao;
+	
+	@Override
+	@Autowired
+	public void setUserTypeDao(UserTypeDao userTypeDao) {
+        this.dao = userTypeDao;
+        this.userTypeDao = userTypeDao;
+		
+	}
 
     @Autowired
     public UserTypeManagerImpl(UserTypeDao userTypeDao) {
@@ -45,6 +53,7 @@ public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> impl
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 }

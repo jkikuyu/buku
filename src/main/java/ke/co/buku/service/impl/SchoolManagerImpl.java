@@ -19,14 +19,22 @@ import ke.co.buku.service.SchoolManager;
 @Service("schoolManager")
 
 public class SchoolManagerImpl extends GenericManagerImpl<School, Long> implements SchoolManager{
-	SchoolDao schoolDao;
-
+	private SchoolDao schoolDao;
+	
+	@Override
     @Autowired
-    public SchoolManagerImpl(SchoolDao schoolDao) {
+	
+	public void setSchoolDao(SchoolDao schoolDao) {
+        this.dao = schoolDao;
+        this.schoolDao = schoolDao;
+		
+	}
+
+/*    public SchoolManagerImpl(SchoolDao schoolDao) {
         super(schoolDao);
         this.schoolDao = schoolDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -55,6 +63,12 @@ public class SchoolManagerImpl extends GenericManagerImpl<School, Long> implemen
     public void removeSchool(Integer schoolId){
     	schoolDao.removeSchool(schoolId);
     }
+
+	@Override
+	public List<School> search(String searchTerm) {
+        return super.search(searchTerm, School.class);
+	}
+
 
 
 }

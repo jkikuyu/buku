@@ -2,6 +2,7 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.PublisherDao;
 import ke.co.buku.model.Publisher;
 
 /**
@@ -13,6 +14,13 @@ import ke.co.buku.model.Publisher;
  */
 public interface PublisherManager extends GenericManager<Publisher, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param publisherDao the PublisherDao implementation to use
+     */
+
+	void setPublisherDao(PublisherDao publisherDao);
+
+	/**
      * {@inheritDoc}
      */
     List <Publisher>getPublisher();

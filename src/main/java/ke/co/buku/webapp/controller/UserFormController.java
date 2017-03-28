@@ -7,13 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import ke.co.buku.Constants;
-import ke.co.buku.model.Role;
-import ke.co.buku.model.User;
-import ke.co.buku.service.RoleManager;
-import ke.co.buku.service.UserExistsException;
-import ke.co.buku.service.UserManager;
-import ke.co.buku.webapp.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
@@ -24,6 +17,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import ke.co.buku.Constants;
+import ke.co.buku.model.Role;
+import ke.co.buku.model.User;
+import ke.co.buku.service.RoleManager;
+import ke.co.buku.service.UserExistsException;
+import ke.co.buku.service.UserManager;
+import ke.co.buku.webapp.util.RequestUtil;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with

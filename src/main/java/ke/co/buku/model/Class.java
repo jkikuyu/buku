@@ -43,7 +43,12 @@ public class Class extends BaseObject implements Serializable {
 	private Long classId;
     @Column(nullable = false, length = 50, unique = true)
     @Field
-	private String className;
+	private String shortName;
+    
+    @Column(nullable = false, length = 50, unique = true)
+    @Field
+	private String longName;
+
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="SCHOOL_ID") 
 	private School school;
@@ -62,10 +67,6 @@ public class Class extends BaseObject implements Serializable {
 		return classId;
 	}
 
-	public String getClassName() {
-		return className;
-	}
-    
 
     public School getSchool() {
 		return school;
@@ -93,10 +94,6 @@ public class Class extends BaseObject implements Serializable {
 
 	public void setClassId(Long classId) {
 		this.classId = classId;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
 	}
 
 	@Override

@@ -13,7 +13,9 @@ import java.util.List;
 import ke.co.buku.model.Teacher;
 
 public interface TeacherDao extends GenericDao<Teacher, Long> {
-    /**
+
+
+	/**
      * {@inheritDoc}
      */
 

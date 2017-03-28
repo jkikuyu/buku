@@ -2,6 +2,9 @@ package ke.co.buku.service;
 
 import java.util.List;
 
+import ke.co.buku.dao.ClassDao;
+import ke.co.buku.model.Status;
+
 /**
  * Business Service Interface to handle communication between web and
  * persistence layer.
@@ -12,6 +15,13 @@ import java.util.List;
 
 public interface ClassManager extends GenericManager<Class, Long> {
     /**
+     * Convenience method for testing - allows you to mock the DAO and set it on an interface.
+     * @param classDao the ClassDao implementation to use
+     */
+
+	void setClassDao(ClassDao classDao);
+
+	/**
      * {@inheritDoc}
      */
 	List <Class> getClasses();
@@ -30,6 +40,12 @@ public interface ClassManager extends GenericManager<Class, Long> {
      * {@inheritDoc}
      */
     void removeClass(Integer classId);
+    /**
+     * Search a user for search terms.
+     * @param searchTerm the search terms.
+     * @return a list of matches, or all if no searchTerm.
+     */
+    List<Class> search(String searchTerm);
 
 
 }

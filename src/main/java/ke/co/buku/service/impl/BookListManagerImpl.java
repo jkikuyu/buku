@@ -17,14 +17,22 @@ import ke.co.buku.service.BookListManager;
  */
 @Service("bookListManager")
 public class BookListManagerImpl extends GenericManagerImpl<BookList, Long> implements BookListManager{
-	BookListDao bookListDao;
-
+	
+	private BookListDao bookListDao;
+	@Override
+	@Autowired
+	public void setBookListDao(BookListDao bookListDao) {
+        this.dao = bookListDao;
+        this.bookListDao = bookListDao;
+		
+	}
+/*
     @Autowired
     public BookListManagerImpl(BookListDao bookListDao) {
         super(bookListDao);
         this.bookListDao = bookListDao;
     }
-
+*/
     /**
      * {@inheritDoc}
      */
@@ -52,5 +60,6 @@ public class BookListManagerImpl extends GenericManagerImpl<BookList, Long> impl
     public void removeBookList(Integer bookListId){
     	bookListDao.removeBookList(bookListId);
     }
+
 
 }

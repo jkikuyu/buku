@@ -10,14 +10,20 @@ import ke.co.buku.model.Teacher;
 import ke.co.buku.service.TeacherManager;
 @Service("teacherManager")
 public class TeacherManagerImpl extends GenericManagerImpl<Teacher, Long> implements TeacherManager{
-	TeacherDao teacherDao;
-
+	private TeacherDao teacherDao;
+	@Override
     @Autowired
+    public void setTeacherDao(final TeacherDao teacherDao) {
+        this.dao = teacherDao;
+        this.teacherDao = teacherDao;
+    }
+
+/*    @Autowired
     public TeacherManagerImpl(TeacherDao teacherDao) {
         super(teacherDao);
         this.teacherDao = teacherDao;
     }
-
+*/
 	/**
      * {@inheritDoc}
      */
@@ -46,6 +52,11 @@ public class TeacherManagerImpl extends GenericManagerImpl<Teacher, Long> implem
     public void removeTeacher(Integer teacherId){
     	teacherDao.removeTeacher(teacherId);
     }
+
+	@Override
+	public List<Teacher> search(String searchTerm) {
+        return super.search(searchTerm, Teacher.class);
+	}
 
 
 }
