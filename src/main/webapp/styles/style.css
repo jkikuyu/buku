@@ -99,7 +99,7 @@ ul.feedbackPanel {
     font-weight: normal;
     margin-left: 20px;
 }
-
+1000px
 .form-signin .form-control {
     position: relative;
     font-size: 16px;
@@ -187,7 +187,7 @@ span.export {
 }
 
 span.pagebanner {
-    display: block;
+    display: block;1000px
     margin: 0 0 0 10px;
     padding: 2px 4px 2px 0;
 }
@@ -289,3 +289,7 @@ span.pagelinks {
     border: 1px solid #CD0A0A;
     color: #FFFFFF;
 }
+.setImage{
+	background:url("../images/buku.png");
+	width:1300px;
+} 

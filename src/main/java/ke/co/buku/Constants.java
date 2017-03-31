@@ -56,6 +56,12 @@ public final class Constants {
      */
     public static final String USER_LIST = "userList";
     /**
+     * The request scope attribute that holds the user list
+     */
+
+    public static final String ROLE_LIST = "roleList";
+
+    /**
      * The request scope attribute that holds the user type list
      */
     public static final String USERTYPE_LIST = "userTypeList";
@@ -95,6 +101,12 @@ public final class Constants {
      * The name of the User role, as specified in web.xml
      */
     public static final String USER_ROLE = "ROLE_USER";
+    /**
+     * The name of the User role, as specified in web.xml
+     */
+    public static final String USER_PUBLISHER = "ROLE_PUBLISHER";
+
+
 
     /**
      * The name of the user's role list, a request-scoped attribute

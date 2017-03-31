@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="home.title"/></title>
-    <meta name="menu" content="Home"/>
+    <meta name="menu" content="Home setImage"/>
 </head>
 <body class="home">
 

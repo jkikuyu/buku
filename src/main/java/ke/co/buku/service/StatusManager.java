@@ -40,7 +40,7 @@ public interface StatusManager extends GenericManager<Status, Long> {
     /**
      * {@inheritDoc}
      */
-    void removeStatus(Integer status);
+    void removeStatus(Integer statusId);
 
     /**
      * Search a user for search terms.

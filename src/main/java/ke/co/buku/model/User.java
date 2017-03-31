@@ -131,7 +131,12 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private UserType userType;
     @Transient
     private String fullName;
-    /**
+    @Transient
+    private String usertype;
+
+	
+
+	/**
      * Default constructor - creates a new instance with no values set.
      */
     public User() {
@@ -283,7 +288,17 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	public String getFullName() {
 		return fullName;
 	}
+    public String getUsertype() {
+		return usertype;
+	}
 
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}

@@ -43,14 +43,6 @@
             <form:input cssClass="form-control" path="name" id="name"/>
             <form:errors path="name" cssClass="help-block"/>
         </div>
-        
-        <spring:bind path="role.description">
-        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-        </spring:bind>
-            <appfuse:label styleClass="control-label" key="role.description"/>
-            <form:input cssClass="form-control" path="description" id="description"/>
-            <form:errors path="description" cssClass="help-block"/>
-        </div>
 
 <%--     <c:when test="${not empty role.name}">
         <div class="form-group">
@@ -90,10 +82,9 @@ function onFormSubmit(theForm) {
 $('#footer').addClass('setImage');
 
 $('#menubar').addClass('setImage');
-
 </script>
 </c:set>
+
 <v:javascript formName="user" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
-
 

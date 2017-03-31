@@ -6,7 +6,7 @@
 
 <body class="signup"/>
 
-<div class="col-sm-2">
+<div class="col-sm-10">
     <h2><fmt:message key="signup.heading"/></h2>
     <p><fmt:message key="signup.message"/></p>
 </div>
@@ -24,13 +24,24 @@
 
     <form:form commandName="user" method="post" action="signup" id="signupForm" autocomplete="off"
                cssClass="well" onsubmit="return validateSignup(this)">
-        <spring:bind path="user.username">
-        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-        </spring:bind>
-            <appfuse:label styleClass="control-label" key="user.username"/>
-            <form:input cssClass="form-control" path="username" id="username" autofocus="true"/>
-            <form:errors path="username" cssClass="help-block"/>
-        </div>
+		<div class="row">
+		 <spring:bind path="user.username">
+		 <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+		 </spring:bind>
+		     <appfuse:label styleClass="control-label" key="user.username"/>
+		     <form:input cssClass="form-control" path="username" id="username" autofocus="true"/>
+		     <form:errors path="username" cssClass="help-block"/>
+		  </div>
+	        <spring:bind path="user.usertype"> 
+		   	<div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+	        </spring:bind>
+				<appfuse:label styleClass="control-label" key="user.usertype"/>
+				<form:select cssClass="form-control" path="usertype">
+					<form:option value="" label="------who are you--------"></form:option>
+					<form:options   items="${usertypes}"  itemLabel="typename" itemValue="usertypeid"/>   
+				 </form:select>
+		   	</div>
+		</div>  
         <div class="row">
             <spring:bind path="user.password">
             <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -80,7 +91,7 @@
             <appfuse:label styleClass="control-label" key="user.website"/>
             <form:input cssClass="form-control" path="website" id="website"/>
         </div>
-        <div>
+<%--         <div>
             <legend class="accordion-heading">
                 <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
             </legend>
@@ -109,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+ --%>       <div class="form-group">
             <button type="submit" class="btn btn-primary" name="save" onclick="bCancel=false">
                 <i class="icon-ok icon-white"></i> <fmt:message key="button.register"/>
             </button>

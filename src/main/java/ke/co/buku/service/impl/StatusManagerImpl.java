@@ -12,12 +12,12 @@ import ke.co.buku.service.StatusManager;
 public class StatusManagerImpl extends GenericManagerImpl<Status, Long> implements StatusManager {
 
 	
-	private StatusDao tstatusDao;
+	private StatusDao statusDao;
 	@Override
 	@Autowired
 	public void setStatusDao(StatusDao statusDao) {
 		this.dao = statusDao;
-		this.tstatusDao = statusDao;
+		this.statusDao = statusDao;
 
 	}
 
@@ -29,26 +29,23 @@ public class StatusManagerImpl extends GenericManagerImpl<Status, Long> implemen
 
 	@Override
 	public Status getStatus(Integer statusId) {
-		// TODO Auto-generated method stub
-		return null;
+		return statusDao.getStatus(statusId);
 	}
 
 	@Override
 	public Status saveStatus(Status status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.save(status);
 	}
 
 	@Override
-	public void removeStatus(Integer status) {
-		// TODO Auto-generated method stub
+	public void removeStatus(Integer statusId) {
+		statusDao.removeStatus(statusId);
 		
 	}
 
 	@Override
 	public List<Status> search(String searchTerm) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.search(searchTerm, Status.class);
 	}
 
 

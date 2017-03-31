@@ -38,7 +38,7 @@ public class RoleController {
     public ModelAndView handleRequest(@RequestParam(required = false, value = "q") String query) throws Exception {
         Model model = new ExtendedModelMap();
         try {
-            model.addAttribute(Constants.USER_ROLES, roleManager.search(query));
+            model.addAttribute(Constants.ROLE_LIST, roleManager.search(query));
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
             model.addAttribute(roleManager.getRoles());

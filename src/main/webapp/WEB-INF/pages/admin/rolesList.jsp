@@ -40,7 +40,7 @@
                    defaultsort="1" id="roles" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
         <display:column property="name" escapeXml="true" sortable="true" titleKey="role.name" style="width: 25%"
                         url="/admin/roleform?from=list" paramId="id" paramProperty="id"/>
-        <display:column property="Description" escapeXml="true" sortable="true" titleKey="role.description"
+        <display:column property="description" escapeXml="true" sortable="true" titleKey="role.description"
                         style="width: 34%"/>
                         style="width: 16%; padding-left: 15px" media="html">
 
@@ -52,3 +52,12 @@
         <display:setProperty name="export.pdf.filename" value="Role List.pdf"/>
     </display:table>
 </div>
+<c:set var="scripts" scope="request">
+
+<script type="text/javascript">
+$('#footer').addClass('setImage');
+
+$('#menubar').addClass('setImage');
+
+</script>
+</c:set>

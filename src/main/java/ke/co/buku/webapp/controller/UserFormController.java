@@ -1,5 +1,6 @@
 package ke.co.buku.webapp.controller;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -195,6 +196,9 @@ public class UserFormController extends BaseFormController {
                 throw new AccessDeniedException("You do not have permission to modify other users.");
             }
         }
+        
+        
+        List<User>users = getUserManager().getAll();
 
         if (!isFormSubmission(request)) {
             final String userId = request.getParameter("id");

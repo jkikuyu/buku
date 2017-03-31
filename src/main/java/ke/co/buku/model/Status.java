@@ -32,6 +32,9 @@ public class Status extends BaseObject implements Serializable {
 	@Column(nullable = false, length = 50)
 	@Field
 	private String name;
+	@Field
+	private String description;
+
 	
 	@OneToMany(mappedBy="status")
 	private Set<Delivery> delivery;
@@ -51,6 +54,14 @@ public class Status extends BaseObject implements Serializable {
 
 	public Set<Delivery> getDelivery() {
 		return delivery;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setDelivery(Set<Delivery> delivery) {

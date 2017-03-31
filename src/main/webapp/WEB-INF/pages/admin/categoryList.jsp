@@ -49,3 +49,12 @@
         <display:setProperty name="export.pdf.filename" value="Category List.pdf"/>
     </display:table>
 </div>
+<c:set var="scripts" scope="request">
+
+<script type="text/javascript">
+$('#footer').addClass('setImage');
+
+$('#menubar').addClass('setImage');
+
+</script>
+</c:set>

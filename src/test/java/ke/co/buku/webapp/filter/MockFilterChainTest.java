@@ -19,7 +19,7 @@ import java.io.IOException;
  * Todo: look into using Spring's MockFilterChain:
  * http://www.springframework.org/docs/api/org/springframework/mock/web/MockFilterChain.html
  */
-public class MockFilterChain implements FilterChain {
+public class MockFilterChainTest implements FilterChain {
     private final Log log = LogFactory.getLog(MockFilterChain.class);
     private String forwardURL;
 

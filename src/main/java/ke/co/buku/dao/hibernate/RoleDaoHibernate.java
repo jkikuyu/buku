@@ -1,13 +1,16 @@
 package ke.co.buku.dao.hibernate;
 
 
-import ke.co.buku.dao.RoleDao;
-import ke.co.buku.model.Role;
+import java.util.List;
+
+import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import ke.co.buku.dao.RoleDao;
+import ke.co.buku.model.Role;
 
 
 /**
@@ -37,6 +40,7 @@ public class RoleDaoHibernate extends GenericDaoHibernate<Role, Long> implements
         } else {
             return (Role) roles.get(0);
         }
+
     }
 
     /**
@@ -47,5 +51,17 @@ public class RoleDaoHibernate extends GenericDaoHibernate<Role, Long> implements
         Session session = getSessionFactory().getCurrentSession();
         session.delete(role);
     }
+
+	@Override
+	public List<Role> getRoles() {
+		Query qry = getSession().createQuery("from Role r order by upper(r.name)");
+	    return qry.list();
+	}
+
+	@Override
+	public Role saveRole(Role role) {
+		// TODO Auto-generated method stub
+		return null;
+	}        
 }
 

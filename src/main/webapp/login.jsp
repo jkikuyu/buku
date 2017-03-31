@@ -1,5 +1,4 @@
 <%@ include file="/common/taglibs.jsp" %>
-<link rel="stylesheet" type="text/css" href="/styles/bootstrap.css">
 <head>
     <title><fmt:message key="login.title"/></title>
     <meta name="menu" content="Login"/>
@@ -47,3 +46,12 @@
 <p><fmt:message key="updatePassword.requestRecoveryTokenLink"/></p>
 
 </body>
+
+<c:set var="scripts" scope="request">
+<script type="text/javascript">
+$('#footer').addClass('setImage');
+
+$('#content').addClass('setImage');
+
+</script>
+</c:set>

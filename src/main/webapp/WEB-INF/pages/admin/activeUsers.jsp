@@ -2,8 +2,9 @@
 
 <head>
     <title><fmt:message key="activeUsers.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
-</head>
+<!--     <meta name="menu" content="AdminMenu"/>
+ -->
+ </head>
 <body id="activeUsers">
 
 <div class="col-sm-10">
@@ -34,3 +35,12 @@
     </display:table>
 </div>
 </body>
+<c:set var="scripts" scope="request">
+
+<script type="text/javascript">
+$('#footer').addClass('setImage');
+
+$('#menubar').addClass('setImage');
+
+</script>
+</c:set>

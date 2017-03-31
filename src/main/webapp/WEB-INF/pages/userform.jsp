@@ -21,7 +21,7 @@
         </c:otherwise>
     </c:choose>
 </div>
-<div class="col-sm-7">
+<div class="col-sm-10">
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
@@ -161,7 +161,7 @@
             <label class="control-label"><fmt:message key="user.roles"/>:</label>
             <div class="readonly">
                 <c:forEach var="role" items="${user.roleList}" varStatus="status">
-                    <c:out value="${role.label}"/><c:if test="${!status.last}">,</c:if>
+                    <c:out value="${role.label}"/>
                     <input type="hidden" name="userRoles" value="<c:out value="${role.label}"/>"/>
                 </c:forEach>
             </div>

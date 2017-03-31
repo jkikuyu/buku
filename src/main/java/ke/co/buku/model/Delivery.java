@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Entity

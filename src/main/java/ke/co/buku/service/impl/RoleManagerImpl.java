@@ -62,7 +62,7 @@ public class RoleManagerImpl extends GenericManagerImpl<Role, Long> implements R
 	@Override
 	public List<Role> getRoles() {
 		// TODO Auto-generated method stub
-		return null;
+		return roleDao.getRoles();
 	}
 
 	@Override

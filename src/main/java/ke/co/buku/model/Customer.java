@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,8 +18,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
@@ -84,6 +80,7 @@ public class Customer extends BaseObject implements Serializable {
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
+	
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
 	}

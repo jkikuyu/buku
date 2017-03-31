@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ke.co.buku.dao.ClassDao;
-import ke.co.buku.model.Status;
-import ke.co.buku.model.Teacher;
 import ke.co.buku.service.ClassManager;
 
 /**

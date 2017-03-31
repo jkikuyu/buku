@@ -1,5 +1,7 @@
 package ke.co.buku.dao;
 
+import java.util.List;
+
 import ke.co.buku.model.Role;
 
 /**
@@ -20,4 +22,16 @@ public interface RoleDao extends GenericDao<Role, Long> {
      * @param rolename the role's rolename
      */
     void removeRole(String rolename);
+    /**
+     * List roles from the database 
+     */
+
+	public List<Role> getRoles();
+    /**
+     * Save a role from the database 
+     * @param role object
+     */
+
+    public Role saveRole(Role role);
+
 }
