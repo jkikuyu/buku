@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ke.co.buku.model.Status;
-import ke.co.buku.service.StatusManager;
+import ke.co.buku.model.Category;
+import ke.co.buku.service.CategoryManager;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -27,65 +27,65 @@ import ke.co.buku.service.StatusManager;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude KikuyuS</a>
  */
 @Controller
-@RequestMapping("/admin/statusform*")
-public class StatusFormController extends BaseFormController {
+@RequestMapping("/admin/categoryform*")
+public class CategoryFormController extends BaseFormController {
 
-	private StatusManager statusManager = null;
+	private CategoryManager categoryManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setStatusManager(StatusManager statusManager) {
-		this.statusManager = statusManager;
+	  public void setCategoryManager(CategoryManager categoryManager) {
+		this.categoryManager = categoryManager;
 	}
 	  
-	  public StatusFormController (){
+	  public CategoryFormController (){
 		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/admin/status");
+		  setSuccessView("redirect:/admin/category");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = RequestMethod.GET)
-	  protected Status showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
+	  protected Category showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return statusManager.get(new Long(id));
+			  return categoryManager.get(new Long(id));
 		  }
-		  return new Status();
+		  return new Category();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
-	    public String onSubmit(Status status, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(Category category, BindingResult errors, HttpServletRequest request,
 	     HttpServletResponse response) throws Exception {
 	        if (request.getParameter("cancel") != null) {
 	            return getCancelView();
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(status, errors);
+	            validator.validate(category, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "admin/statusform";
+	                return "admin/categoryform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (status.getStatusId() == null);
+	        boolean isNew = (category.getCategoryId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	statusManager.remove(status.getStatusId());
-	            saveMessage(request, getText("status.deleted", locale));
+	        	categoryManager.remove(category.getCategoryId());
+	            saveMessage(request, getText("category.deleted", category.getCategoryName(), locale));
 	        } else {
-	        	statusManager.save(status);
-	            String key = (isNew) ? "status.added" : "status.updated";
-	            saveMessage(request, getText(key, status.getName() ,locale));
+	        	categoryManager.save(category);
+	            String key = (isNew) ? "category.added" : "category.updated";
+	            saveMessage(request, getText(key, category.getCategoryName() ,locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/statusform?id=" + status.getStatusId();
+	                success = "redirect:/admin/categoryform?id=" + category.getCategoryId();
 	            }
 	        }
 

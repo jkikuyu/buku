@@ -27,7 +27,7 @@
     </form>
 
     <div id="actions" class="btn-group">
-        <a class="btn btn-primary" href="<c:url value='/classform?method=Add&from=list'/>">
+        <a class="btn btn-primary" href="<c:url value='/admin/classform?method=Add&from=list'/>">
             <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
 
         <a class="btn btn-default" href="<c:url value='/home'/>">
@@ -36,9 +36,9 @@
 
     <display:table name="classesList" cellspacing="0" cellpadding="0" requestURI=""
                    defaultsort="1" id="classes" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
-        <display:column property="shortDesc" escapeXml="true" sortable="true" titleKey="class.shortDesc" style="width: 25%"
-                        url="/userform?from=list" paramId="id" paramProperty="id"/>
-        <display:column property="longDesc" escapeXml="true" sortable="true" titleKey="class.longDesc"
+        <display:column property="shortName" escapeXml="true" sortable="true" titleKey="class.shortName" style="width: 25%"
+                        url="/classform=list" paramId="id" paramProperty="classId"/>
+        <display:column property="longName" escapeXml="true" sortable="true" titleKey="class.longName"
                         style="width: 34%"/>
         <display:setProperty name="paging.banner.item_name"><fmt:message key="classesList.class"/></display:setProperty>
         <display:setProperty name="paging.banner.items_name"><fmt:message key="classesList.classes"/></display:setProperty>
@@ -48,7 +48,7 @@
         <display:setProperty name="export.pdf.filename" value="Classes List.pdf"/>
     </display:table>
 </div>
-<c:set var="scripts" scope="request">
+<%-- <c:set var="scripts" scope="request">
 
 <script type="text/javascript">
 $('#footer').addClass('setImage');
@@ -58,3 +58,4 @@ $('#menubar').addClass('setImage');
 </script>
 </c:set>
 
+ --%>

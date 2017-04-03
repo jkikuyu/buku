@@ -53,7 +53,7 @@ public class Teacher extends BaseObject implements Serializable {
         joinColumns = { @JoinColumn(name = "teacher_id") },
         inverseJoinColumns = @JoinColumn(name = "class_id")
         )
-	private Set <Class> classes;
+	private Set <Clasz> classes;
 	
 	public Teacher() {
 		// TODO Auto-generated constructor stub
@@ -75,13 +75,13 @@ public class Teacher extends BaseObject implements Serializable {
 	}
     
 
-	public Set<Class> getClasses() {
+	public Set<Clasz> getClasses() {
 		return classes;
 	}
 
 
 
-	public void setClasses(Set<Class> classes) {
+	public void setClasses(Set<Clasz> classes) {
 		this.classes = classes;
 	}
 

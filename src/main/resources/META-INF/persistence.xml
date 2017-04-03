@@ -7,6 +7,8 @@
         <class>ke.co.buku.model.Role</class>
         <class>ke.co.buku.model.Publisher</class>
         <class>ke.co.buku.model.UserRegistration</class>
+        <class>ke.co.buku.model.UserType</class>
+        
     </persistence-unit>
 
     <!-- WARNING: This file's file original source is at web/common/src/main/resources/META-INF. The

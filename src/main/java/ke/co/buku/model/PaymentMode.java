@@ -35,6 +35,10 @@ public class PaymentMode extends BaseObject implements Serializable {
 	@Column(nullable = false, length=50)
 	private String name;
 	
+	@Field
+	@Column(nullable = false, length=50)
+	private String description;
+
 	@OneToMany(mappedBy="paymentmode")
 	private Set <Payment> payments;
 	public PaymentMode() {
@@ -47,6 +51,14 @@ public class PaymentMode extends BaseObject implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setModeId(Long modeId) {

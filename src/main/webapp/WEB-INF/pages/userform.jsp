@@ -120,9 +120,9 @@
                     <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
                 </div>
             </div>
-             
+            
       </div> 
-      --%> 
+       --%> 
 <c:choose>
     <c:when test="${param.from == 'list' or param.method == 'Add'}">
         <div class="form-group">

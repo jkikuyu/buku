@@ -10,7 +10,7 @@
         <mapping class="ke.co.buku.model.BookList"/>
         <mapping class="ke.co.buku.model.BookStore"/>
         <mapping class="ke.co.buku.model.Category"/>
-    	<mapping class="ke.co.buku.model.Class"/>
+    	<mapping class="ke.co.buku.model.Clasz"/>
         <mapping class="ke.co.buku.model.Customer"/>
         <mapping class="ke.co.buku.model.Delivery"/>
         <mapping class="ke.co.buku.model.Location"/>

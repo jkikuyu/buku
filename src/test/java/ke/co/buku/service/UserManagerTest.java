@@ -1,18 +1,23 @@
 package ke.co.buku.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import ke.co.buku.Constants;
-import ke.co.buku.model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import ke.co.buku.Constants;
+import ke.co.buku.model.User;
 
 @Transactional(Transactional.TxType.NOT_SUPPORTED)
 public class UserManagerTest extends BaseManagerTestCase {

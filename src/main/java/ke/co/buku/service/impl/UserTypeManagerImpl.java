@@ -22,12 +22,6 @@ public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> impl
 		
 	}
 
-    @Autowired
-    public UserTypeManagerImpl(UserTypeDao userTypeDao) {
-        super(userTypeDao);
-        this.userTypeDao = userTypeDao;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -44,14 +38,19 @@ public class UserTypeManagerImpl extends GenericManagerImpl<UserType, Long> impl
 
 	@Override
 	public List<UserType> getUserTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getAll();
 	}
 
 	@Override
 	public UserType getUserType(Integer userTypeId) {
 		// TODO Auto-generated method stub
-		return null;
+		return userTypeDao.getUserType(userTypeId);
+	}
+
+	@Override
+	public List<UserType> search(String searchTerm) {
+		// TODO Auto-generated method stub
+		return super.search(searchTerm, UserType.class);
 	}
 
 

@@ -11,8 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ke.co.buku.Constants;
 import ke.co.buku.dao.SearchException;
-import ke.co.buku.service.ClassManager;
-import ke.co.buku.service.UserManager;
+import ke.co.buku.service.ClaszManager;
 
 /**
  * Simple class to retrieve a list of users from the database.
@@ -27,18 +26,18 @@ import ke.co.buku.service.UserManager;
 @Controller
 @RequestMapping("/admin/class*")
 
-public class ClassController {
+public class ClaszController {
 
-	public ClassController() {
+	public ClaszController() {
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-    private ClassManager classManager = null;
+    private ClaszManager classManager = null;
 
     @Autowired
-    public void setClassManager(ClassManager classManager) {
+    public void setClassManager(ClaszManager classManager) {
         this.classManager = classManager;
     }
 

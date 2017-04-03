@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ke.co.buku.model.Status;
-import ke.co.buku.service.StatusManager;
+import ke.co.buku.model.UserType;
+import ke.co.buku.service.UserTypeManager;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -27,65 +27,65 @@ import ke.co.buku.service.StatusManager;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude KikuyuS</a>
  */
 @Controller
-@RequestMapping("/admin/statusform*")
-public class StatusFormController extends BaseFormController {
+@RequestMapping("/admin/usertypeform")
+public class UserTypeFormController extends BaseFormController {
 
-	private StatusManager statusManager = null;
+	private UserTypeManager userTypeManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setStatusManager(StatusManager statusManager) {
-		this.statusManager = statusManager;
+	  public void setUserTypeManager(UserTypeManager userTypeManager) {
+		this.userTypeManager = userTypeManager;
 	}
 	  
-	  public StatusFormController (){
+	  public UserTypeFormController (){
 		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/admin/status");
+		  setSuccessView("redirect:/admin/types");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = RequestMethod.GET)
-	  protected Status showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
+	  protected UserType showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return statusManager.get(new Long(id));
+			  return userTypeManager.get(new Long(id));
 		  }
-		  return new Status();
+		  return new UserType();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
-	    public String onSubmit(Status status, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(UserType usertype, BindingResult errors, HttpServletRequest request,
 	     HttpServletResponse response) throws Exception {
 	        if (request.getParameter("cancel") != null) {
 	            return getCancelView();
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(status, errors);
+	            validator.validate(usertype, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "admin/statusform";
+	                return "admin/usertypeform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (status.getStatusId() == null);
+	        boolean isNew = (usertype.getUserTypeId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	statusManager.remove(status.getStatusId());
-	            saveMessage(request, getText("status.deleted", locale));
+	        	userTypeManager.remove(usertype.getUserTypeId() );
+	            saveMessage(request, getText("usertype.deleted",usertype.getName(),  locale));
 	        } else {
-	        	statusManager.save(status);
-	            String key = (isNew) ? "status.added" : "status.updated";
-	            saveMessage(request, getText(key, status.getName() ,locale));
+	        	userTypeManager.save(usertype);
+	            String key = (isNew) ? "usertype.added" : "usertype.updated";
+	            saveMessage(request, getText(key, usertype.getName() ,locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/statusform?id=" + status.getStatusId();
+	                success = "redirect:/admin/usertypeform?id=" + usertype.getUserTypeId();
 	            }
 	        }
 

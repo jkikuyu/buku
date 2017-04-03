@@ -16,7 +16,7 @@ public interface LocationDao extends GenericDao<Location, Long> {
      * {@inheritDoc}
      */
 	
-    List getLocations(Location location);
+    List <Location> getLocations(Location location);
 
     /**
      * {@inheritDoc}

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ke.co.buku.model.Role;
-import ke.co.buku.service.RoleManager;
+import ke.co.buku.model.School;
+import ke.co.buku.service.SchoolManager;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -30,34 +30,34 @@ import ke.co.buku.service.RoleManager;
 @RequestMapping("/admin/schoolform*")
 public class SchoolFormController extends BaseFormController {
 
-	private RoleManager roleManager = null;
+	private SchoolManager schoolManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setRoleManager(RoleManager roleManager) {
-		this.roleManager = roleManager;
+	  public void setSchoolManager(SchoolManager schoolManager) {
+		this.schoolManager = schoolManager;
 	}
 	  
 	  public SchoolFormController (){
 		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/home/roles");
+		  setSuccessView("redirect:/home/schools");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-	  protected Role showForm(HttpServletRequest request)throws Exception
+	  protected School showForm(HttpServletRequest request)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return roleManager.get(new Long(id));
+			  return schoolManager.get(new Long(id));
 		  }
-		  return new Role();
+		  return new School();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
 	 
-	    public String onSubmit(Role role, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(School school, BindingResult errors, HttpServletRequest request,
 	                           HttpServletResponse response)
 	    throws Exception {
 	        if (request.getParameter("cancel") != null) {
@@ -65,29 +65,29 @@ public class SchoolFormController extends BaseFormController {
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(role, errors);
+	            validator.validate(school, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "uploadfiledetailsform";
+	                return "admin/schoolform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (role.getId() == null);
+	        boolean isNew = (school.getSchoolId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	roleManager.remove(role.getId());
+	        	schoolManager.remove(school.getSchoolId());
 	            saveMessage(request, getText("uploadfiledetails.deleted", locale));
 	        } else {
-	        	roleManager.save(role);
+	        	schoolManager.save(school);
 	            String key = (isNew) ? "uploadfiledetails.added" : "uploadfiledetails.updated";
 	            saveMessage(request, getText(key, locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/roleform?id=" + role.getId();
+	                success = "redirect:/admin/schoolform?id=" + school.getSchoolId();
 	            }
 	        }
 

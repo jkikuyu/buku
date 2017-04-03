@@ -37,14 +37,14 @@
     </div>
 
     <display:table name="statusList" cellspacing="0" cellpadding="0" requestURI=""
-                   defaultsort="1" id="statuss" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
-        <display:column property="statusname" escapeXml="true" sortable="true" titleKey="status.statusname" style="width: 25%"
-                        url="/admin/statusform?from=list" paramId="id" paramProperty="id"/>
-        <display:column property="fullName" escapeXml="true" sortable="true" titleKey="activestatuss.fullName"
+                   defaultsort="1" id="status" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
+        <display:column property="name" escapeXml="true" sortable="true" titleKey="status.name" style="width: 25%"
+                        url="/admin/statusform?from=list" paramId="id" paramProperty="statusId"/>
+        <display:column property="fullName" escapeXml="true" sortable="true" titleKey="status.description"
                         style="width: 34%"/>
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="statusList.status"/></display:setProperty>
-        <display:setProperty name="paging.banner.items_name"><fmt:message key="statusList.statuses"/></display:setProperty>
+        <display:setProperty name="paging.banner.items_name"><fmt:message key="statusList.status"/></display:setProperty>
 
         <display:setProperty name="export.excel.filename" value="Status List.xls"/>
         <display:setProperty name="export.csv.filename" value="Status List.csv"/>

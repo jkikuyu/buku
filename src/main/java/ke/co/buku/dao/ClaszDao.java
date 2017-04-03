@@ -2,6 +2,8 @@ package ke.co.buku.dao;
 
 import java.util.List;
 
+import ke.co.buku.model.Clasz;
+
 /**
  * Book Data Access Object (DAO) interface.
  *
@@ -10,26 +12,26 @@ import java.util.List;
  */
 
 
-public interface ClassDao extends GenericDao<Class, Long> {
+public interface ClaszDao extends GenericDao<Clasz, Long> {
     /**
      * {@inheritDoc}
      */
-	public List <Class> getClasses();
+	public List <Clasz> getClasses();
 
     /**
      * {@inheritDoc}
      */
-	public Class getClass(Integer classId);
+	public Clasz getClasz(Integer classId);
 
     /**
      * {@inheritDoc}
      */
-	public Class saveClass(Class clasz);
+	public Clasz saveClasz(Clasz clasz);
 
     /**
      * {@inheritDoc}
      */
-	public void removeClass(Integer classId);
+	public void removeClasz(Integer classId);
 
 
 }

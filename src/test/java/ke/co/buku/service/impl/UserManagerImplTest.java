@@ -1,20 +1,29 @@
 package ke.co.buku.service.impl;
 
-import ke.co.buku.Constants;
-import ke.co.buku.dao.RoleDao;
-import ke.co.buku.dao.UserDao;
-import ke.co.buku.model.Role;
-import ke.co.buku.model.User;
-import ke.co.buku.service.UserExistsException;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.BDDMockito.willThrow;
+import static org.mockito.Mockito.verify;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.junit.Assert.*;
-import static org.mockito.BDDMockito.*;
-
+import ke.co.buku.Constants;
+import ke.co.buku.dao.GenericDaoTest;
+import ke.co.buku.dao.UserDao;
+import ke.co.buku.model.Role;
+import ke.co.buku.model.User;
+import ke.co.buku.service.UserExistsException;
+import ke.co.buku.service.impl.BaseManagerMockTestCase;
 public class UserManagerImplTest extends BaseManagerMockTestCase {
     //~ Instance fields ========================================================
 
@@ -31,6 +40,7 @@ public class UserManagerImplTest extends BaseManagerMockTestCase {
     @InjectMocks
     private UserManagerImpl userManager = new UserManagerImpl();
 
+    Log log = LogFactory.getLog(GenericDaoTest.class);
 
     //~ Methods ================================================================
 
@@ -112,7 +122,9 @@ public class UserManagerImplTest extends BaseManagerMockTestCase {
         verify(userDao).remove(5L);
     }
 
-    @Test
+
+
+	@Test
     public void testUserExistsException() {
         // set expectations
         final User user = new User("admin");

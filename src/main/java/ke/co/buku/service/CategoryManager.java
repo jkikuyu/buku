@@ -4,7 +4,6 @@ import java.util.List;
 
 import ke.co.buku.dao.CategoryDao;
 import ke.co.buku.model.Category;
-import ke.co.buku.model.Role;
 
 /**
  * Business Service Interface to handle communication between web and

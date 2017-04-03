@@ -1,15 +1,17 @@
 package ke.co.buku.dao;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import ke.co.buku.dao.hibernate.GenericDaoHibernate;
-import ke.co.buku.model.User;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
+import ke.co.buku.dao.hibernate.GenericDaoHibernate;
+import ke.co.buku.model.User;
 
 public class GenericDaoTest extends BaseDaoTestCase {
     Log log = LogFactory.getLog(GenericDaoTest.class);

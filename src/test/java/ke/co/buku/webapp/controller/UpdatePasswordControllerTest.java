@@ -1,8 +1,19 @@
 package ke.co.buku.webapp.controller;
 
+import static junit.framework.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import javax.servlet.Filter;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang.RandomStringUtils;
-import ke.co.buku.model.User;
-import ke.co.buku.service.UserManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +28,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.subethamail.wiser.Wiser;
 
-import javax.servlet.Filter;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-
-import static junit.framework.Assert.assertNull;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import ke.co.buku.model.User;
+import ke.co.buku.service.UserManager;
 
 @ContextConfiguration(locations = {
     "classpath:/applicationContext-resources.xml",

@@ -29,7 +29,7 @@
     </form>
 
     <div id="actions" class="btn-group">
-        <a class="btn btn-primary" href="<c:url value='/schoolsform?method=Add&from=list'/>">
+        <a class="btn btn-primary" href="<c:url value='/admin/schoolform?method=Add&from=list'/>">
             <i class="icon-plus icon-white"></i> <fmt:message key="button.add"/></a>
 
         <a class="btn btn-default" href="<c:url value='/home'/>">
@@ -37,15 +37,16 @@
     </div>
 
     <display:table name="schoolsList" cellspacing="0" cellpadding="0" requestURI=""
-                   defaultsort="1" id="schoolss" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
+                   defaultsort="1" id="schools" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
         <display:column property="shortDesc" escapeXml="true" sortable="true" titleKey="school.shortDesc" style="width: 25%"
-                        url="/admin/schoolform?from=list" paramId="id" paramProperty="id"/>
+                        url="/admin/schoolform?from=list" paramId="id" paramProperty="schoolId"/>
         <display:column property="longDesc" escapeXml="true" sortable="true" titleKey="school.longDesc"
                         style="width: 34%"/>
-       <display:column sortProperty="enabled" sortable="true" titleKey="school.enabled"
+		<%--  <display:column sortProperty="enabled" sortable="true" titleKey="school.enabled"
                         style="width: 16%; padding-left: 15px" media="html">
             <input type="checkbox" disabled="disabled" <c:if test="${schools.enabled}">checked="checked"</c:if>/>
-        </display:column>
+       </display:column>
+        --%> 
         <display:column property="enabled" titleKey="school.enabled" media="csv xml excel pdf"/>
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="schoolList.school"/></display:setProperty>
@@ -56,12 +57,3 @@
         <display:setProperty name="export.pdf.filename" value="School List.pdf"/>
     </display:table>
 </div>
-<c:set var="scripts" scope="request">
-
-<script type="text/javascript">
-$('#footer').addClass('setImage');
-
-$('#menubar').addClass('setImage');
-
-</script>
-</c:set>

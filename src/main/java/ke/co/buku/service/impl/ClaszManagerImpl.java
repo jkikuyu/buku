@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ke.co.buku.dao.ClassDao;
-import ke.co.buku.service.ClassManager;
+import ke.co.buku.dao.ClaszDao;
+import ke.co.buku.model.Clasz;
+import ke.co.buku.service.ClaszManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -16,15 +17,15 @@ import ke.co.buku.service.ClassManager;
  * date: 24/03/2017
  */
 @Service("classManager")
-public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements ClassManager{
-	ClassDao classDao;
+public class ClaszManagerImpl extends GenericManagerImpl<Clasz, Long> implements ClaszManager{
+	ClaszDao claszDao;
 
    
 	@Override
 	@Autowired
-	public void setClassDao(ClassDao classDao) {
-        this.dao = classDao;
-        this.classDao = classDao;
+	public void setClaszDao(ClaszDao claszDao) {
+        this.dao = claszDao;
+        this.claszDao = claszDao;
 		
 	}
 
@@ -37,21 +38,21 @@ public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements
 	/**
      * {@inheritDoc}
      */
-	public List <Class> getClasses(){
+	public List <Clasz> getClasses(){
 		return dao.getAll();
 	}
 
     /**
      * {@inheritDoc}
      */
-	public Class getClass(Integer classId){
-		return classDao.getClass(classId);
+	public Clasz getClass(Integer classId){
+		return claszDao.getClasz(classId);
 	}
 
     /**
      * {@inheritDoc}
      */
-	public Class saveClass(Class clasz){
+	public Clasz saveClass(Clasz clasz){
 		return dao.save(clasz);
 	}
 
@@ -59,14 +60,14 @@ public class ClassManagerImpl extends GenericManagerImpl<Class, Long> implements
      * {@inheritDoc}
      */
     public void removeClass(Integer classId){
-    	classDao.removeClass(classId);
+    	claszDao.removeClasz(classId);
     }
 
 
 	@Override
-	public List<Class> search(String searchTerm) {
+	public List<Clasz> search(String searchTerm) {
 		// TODO Auto-generated method stub
-        return super.search(searchTerm, Class.class);
+        return super.search(searchTerm, Clasz.class);
 	}
 
 

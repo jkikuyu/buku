@@ -50,7 +50,7 @@ public class BookList extends BaseObject implements Serializable {
 	private Integer year;
 	@OneToOne 
     @JoinColumn(name="CLASS_ID") 
-	private Class clasz;
+	private Clasz clasz;
 	
 
 	public BookList() {
@@ -66,7 +66,7 @@ public class BookList extends BaseObject implements Serializable {
 	public Integer getYear() {
 		return year;
 	}
-	public Class getClasz() {
+	public Clasz getClasz() {
 		return clasz;
 	}
 	@ManyToOne(fetch=FetchType.LAZY)

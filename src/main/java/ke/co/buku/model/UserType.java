@@ -30,14 +30,18 @@ public class UserType extends BaseObject implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long userTypeId;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 25)
 	@Field
 	private String name;
-	@OneToMany(mappedBy="userType")
 
+    @Column(nullable = false, length = 50)
+	@Field
+	private String description;
+
+    
+	@OneToMany(mappedBy="userType")
 	private Set<User> users;
 	
-
 	public UserType() {
 		// TODO Auto-generated constructor stub
 	}
@@ -52,6 +56,14 @@ public class UserType extends BaseObject implements Serializable {
 
 	public Set<User> getUsers() {
 		return users;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setUsers(Set<User> users) {

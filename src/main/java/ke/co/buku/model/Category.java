@@ -35,8 +35,12 @@ public class Category extends BaseObject implements Serializable {
 	@DocumentId
 	private Long categoryId;
 	
-	@Column(nullable = false, length = 50, unique = true)
+	@Column(nullable = false, length = 25, unique = true)
 	private String CategoryName;
+	
+	@Column(nullable = false, length = 100, unique = true)
+	private String description;
+
 	
 	@OneToMany(mappedBy="category")
 	private Set <Book> books;
@@ -57,6 +61,11 @@ public class Category extends BaseObject implements Serializable {
 		return books;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+
 	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
@@ -67,6 +76,10 @@ public class Category extends BaseObject implements Serializable {
 
 	public void setBooks(Set<Book> books) {
 		this.books = books;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

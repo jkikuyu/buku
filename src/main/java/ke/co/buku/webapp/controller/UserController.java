@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <a href="UserController.java.html"><i>View Source</i></a>
  * </p>
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu</a>
  */
 @Controller
 @RequestMapping("/admin/users*")

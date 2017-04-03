@@ -2,8 +2,8 @@ package ke.co.buku.service;
 
 import java.util.List;
 
-import ke.co.buku.dao.ClassDao;
-import ke.co.buku.model.Status;
+import ke.co.buku.dao.ClaszDao;
+import ke.co.buku.model.Clasz;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -13,28 +13,28 @@ import ke.co.buku.model.Status;
  * date: 24/03/2017
  */
 
-public interface ClassManager extends GenericManager<Class, Long> {
+public interface ClaszManager extends GenericManager<Clasz, Long> {
     /**
      * Convenience method for testing - allows you to mock the DAO and set it on an interface.
      * @param classDao the ClassDao implementation to use
      */
 
-	void setClassDao(ClassDao classDao);
+	void setClaszDao(ClaszDao classDao);
 
 	/**
      * {@inheritDoc}
      */
-	List <Class> getClasses();
+	List <Clasz> getClasses();
 
     /**
      * {@inheritDoc}
      */
-	Class getClass(Integer classId);
+	Clasz getClass(Integer classId);
 
     /**
      * {@inheritDoc}
      */
-	Class saveClass(Class clasz);
+	Clasz saveClass(Clasz clasz);
 
     /**
      * {@inheritDoc}
@@ -45,7 +45,7 @@ public interface ClassManager extends GenericManager<Class, Long> {
      * @param searchTerm the search terms.
      * @return a list of matches, or all if no searchTerm.
      */
-    List<Class> search(String searchTerm);
+    List<Clasz> search(String searchTerm);
 
 
 }

@@ -24,7 +24,7 @@ import ke.co.buku.service.PaymentModeManger;
  */
 
 @Controller
-@RequestMapping("/admin/payMode*")
+@RequestMapping("/admin/paymode*")
 public class PayModeController {
 	private PaymentModeManger paymentModeManager;
 	

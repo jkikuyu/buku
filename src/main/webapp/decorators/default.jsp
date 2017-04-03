@@ -11,11 +11,18 @@
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
     <t:assets type="css"/>
     <decorator:head/>
+    <style>
+		.setImage{
+			background-image: url(../images/buku.png);
+			width:1300px;
+			
+		} 
+	</style>
 </head>
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class" writeEntireProperty="true"/>>
     <c:set var="currentMenu" scope="request"><decorator:getProperty property="meta.menu"/></c:set>
 
-    <div id="menubar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div id="menubar" class="navbar navbar-default navbar-fixed-top setImage" role="navigation">
         <div class="na=vbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="icon-bar"></span>
@@ -48,7 +55,7 @@
         </div>
     </div>
 
-    <div id="footer" class="container navbar-fixed-bottom">
+    <div id="footer" class="container navbar-fixed-bottom setImage">
         <span class="col-sm-6 text-left"><fmt:message key="webapp.version"/>
             <c:if test="${pageContext.request.remoteUser != null}">
             | <fmt:message key="user.status"/> ${pageContext.request.remoteUser}

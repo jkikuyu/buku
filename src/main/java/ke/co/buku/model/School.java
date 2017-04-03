@@ -49,9 +49,9 @@ public class School extends BaseObject implements Serializable{
     @Field
 	private String longName;
 	
-    @Embedded
-    @IndexedEmbedded
+
 	private Address address = new Address();
+
 	
     @Pattern(regexp="(^$|[0-9]{10})")
     @Field
@@ -72,19 +72,21 @@ public class School extends BaseObject implements Serializable{
 	private Set <Teacher> teachers;
 	
 	@OneToMany(mappedBy="school")
-	private Set <Class> classes;
+	private Set <Clasz> classes;
 	
 	public School() {
-		// TODO Auto-generated constructor stub
 	}
 	public Long getSchoolId() {
 		return schoolId;
 	}
  
-   
+	
+    @Embedded
+    @IndexedEmbedded
     public Address getAddress() {
-		return address;
-	}
+        return address;
+    }
+
     
 	public String getTelNo1() {
 		return telNo1;
@@ -103,7 +105,7 @@ public class School extends BaseObject implements Serializable{
 	public Set<Teacher> getTeachers() {
 		return teachers;
 	}
-	public Set<Class> getClasses() {
+	public Set<Clasz> getClasses() {
 		return classes;
 	}
 
@@ -123,7 +125,7 @@ public class School extends BaseObject implements Serializable{
 		this.teachers = teachers;
 	}
 
-	public void setClasses(Set<Class> classes) {
+	public void setClasses(Set<Clasz> classes) {
 		this.classes = classes;
 	}
 
@@ -134,6 +136,7 @@ public class School extends BaseObject implements Serializable{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
 
 	public void setTelNo1(String telNo1) {
 		this.telNo1 = telNo1;

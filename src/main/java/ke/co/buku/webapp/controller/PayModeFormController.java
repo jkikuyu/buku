@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ke.co.buku.model.Status;
-import ke.co.buku.service.StatusManager;
+import ke.co.buku.model.PaymentMode;
+import ke.co.buku.service.PaymentModeManger;
+import ke.co.buku.service.UserManager;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -27,65 +28,65 @@ import ke.co.buku.service.StatusManager;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude KikuyuS</a>
  */
 @Controller
-@RequestMapping("/admin/statusform*")
-public class StatusFormController extends BaseFormController {
+@RequestMapping("/admin/paymodeform*")
+public class PayModeFormController extends BaseFormController {
 
-	private StatusManager statusManager = null;
+	private PaymentModeManger paymodeManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setStatusManager(StatusManager statusManager) {
-		this.statusManager = statusManager;
+	  public void setCategoryManager(PaymentModeManger paymodeManager) {
+		this.paymodeManager = paymodeManager;
 	}
 	  
-	  public StatusFormController (){
+	  public PayModeFormController (){
 		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/admin/status");
+		  setSuccessView("redirect:/admin/paymode");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = RequestMethod.GET)
-	  protected Status showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
+	  protected PaymentMode showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return statusManager.get(new Long(id));
+			  return paymodeManager.get(new Long(id));
 		  }
-		  return new Status();
+		  return new PaymentMode();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
-	    public String onSubmit(Status status, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(PaymentMode paymode, BindingResult errors, HttpServletRequest request,
 	     HttpServletResponse response) throws Exception {
 	        if (request.getParameter("cancel") != null) {
 	            return getCancelView();
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(status, errors);
+	            validator.validate(paymode, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "admin/statusform";
+	                return "admin/paymodeform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (status.getStatusId() == null);
+	        boolean isNew = (paymode.getModeId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	statusManager.remove(status.getStatusId());
-	            saveMessage(request, getText("status.deleted", locale));
+	        	paymodeManager.remove(paymode.getModeId());
+	            saveMessage(request, getText("paymode.deleted", locale));
 	        } else {
-	        	statusManager.save(status);
-	            String key = (isNew) ? "status.added" : "status.updated";
-	            saveMessage(request, getText(key, status.getName() ,locale));
+	        	paymodeManager.save(paymode);
+	            String key = (isNew) ? "paymode.added" : "paymode.updated";
+	            saveMessage(request, getText(key, paymode.getName() ,locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/statusform?id=" + status.getStatusId();
+	                success = "redirect:/admin/paymodeform?id=" + paymode.getModeId();
 	            }
 	        }
 

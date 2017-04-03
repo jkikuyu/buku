@@ -11,44 +11,44 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ke.co.buku.Constants;
 import ke.co.buku.dao.SearchException;
-import ke.co.buku.service.SchoolManager;
-
-
+import ke.co.buku.service.UserTypeManager;
 /**
  * Simple class to retrieve a list of users from the database.
  * <p/>
  * <p>
- * <a href="UserController.java.html"><i>View Source</i></a>
+ * <a href="StatusController.java.html"><i>View Source</i></a>
  * </p>
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu</a>
  */
-@Controller
-@RequestMapping("/admin/schools*")
-public class SchoolController {
 
-	public SchoolController() {
+@Controller
+@RequestMapping("/admin/types")
+public class UserTypeController {
+
+	public UserTypeController() {
 		// TODO Auto-generated constructor stub
 	}
 
-    private SchoolManager schoolManager = null;
+
+    private UserTypeManager userTypeManager = null;
 
     @Autowired
-    public void setSchoolManager(SchoolManager schoolManager) {
-        this.schoolManager = schoolManager;
+    public void setStatusManager(UserTypeManager userTypeManager) {
+        this.userTypeManager = userTypeManager;
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView handleRequest(@RequestParam(required = false, value = "q") String query) throws Exception {
         Model model = new ExtendedModelMap();
         try {
-            model.addAttribute(Constants.SCHOOL_LIST, schoolManager.search(query));
+            model.addAttribute(Constants.USERTYPE_LIST, userTypeManager.search(query));
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
-            model.addAttribute(schoolManager.getSchools());
+            model.addAttribute(userTypeManager.getUserTypes());
         }
-        return new ModelAndView("admin/schoolsList", model.asMap());
+        return new ModelAndView("admin/usertypeList", model.asMap());
     }
 }
-
 

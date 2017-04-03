@@ -39,7 +39,11 @@
     <display:table name="categoryList" cellspacing="0" cellpadding="0" requestURI=""
                    defaultsort="1" id="category" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
         <display:column property="categoryName" escapeXml="true" sortable="true" titleKey="category.categoryName" style="width: 25%"
-                        url="/admin/categoryform?from=list" paramId="id" paramProperty="id"/>
+           url="/admin/categoryform?from=list" paramId="id" paramProperty="categoryId"/>
+       	<display:column property="description" escapeXml="true" sortable="true" titleKey="category.description"
+	         style="width: 34%"/>
+	         style="width: 16%; padding-left: 15px" media="html">
+                        s
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="category.category"/></display:setProperty>
         <display:setProperty name="paging.banner.items_name"><fmt:message key="category.categories"/></display:setProperty>
@@ -49,7 +53,7 @@
         <display:setProperty name="export.pdf.filename" value="Category List.pdf"/>
     </display:table>
 </div>
-<c:set var="scripts" scope="request">
+<%-- <c:set var="scripts" scope="request">
 
 <script type="text/javascript">
 $('#footer').addClass('setImage');
@@ -58,3 +62,4 @@ $('#menubar').addClass('setImage');
 
 </script>
 </c:set>
+ --%>

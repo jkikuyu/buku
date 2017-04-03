@@ -35,99 +35,106 @@
     <form:form commandName="school" method="post" action="schoolform" id="schoolForm" autocomplete="off"
                cssClass="well" onsubmit="return validateSchool(this)">
                
-        <form:hidden path="id"/>
-        <spring:bind path="school.name">
-        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        <form:hidden path="schoolId"/>
+        <spring:bind path="school.shortName">
+        	<div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="school.name"/>
-            <form:input cssClass="form-control" path="name" id="name"/>
-            <form:errors path="name" cssClass="help-block"/>
-        </div>
+	        <appfuse:label styleClass="control-label" key="school.shortName"/>
+	        <form:input cssClass="form-control" path="shortName" id="shortName"/>
+	        <form:errors path="shortName" cssClass="help-block"/>
+         	</div>
+            
+        <spring:bind path="school.longName">
+	        <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+            <appfuse:label styleClass="control-label" key="school.longName"/>
+            <form:input cssClass="form-control" path="longName" id="longName"/>
+            <form:errors path="longName" cssClass="help-block"/>
+     	</div>
 
 <%--     <c:when test="${not empty school.name}">
         <div class="form-group">
-            <label class="control-label"><fmt:message key="user.schools"/>:</label>
+            <label class="control-label"><fmt:message key="school.schools"/>:</label>
             <div class="readonly">
                 <c:forEach var="school" items="${school.schoolList}" varStatus="status">
                     <c:out value="${school.label}"/><c:if test="${!status.last}">,</c:if>
-                    <input type="hidden" name="userschools" value="<c:out value="${school.label}"/>"/>
+                    <input type="hidden" name="schools" value="<c:out value="${school.label}"/>"/>
                 </c:forEach>
             </div>
         </div>
     </c:when> --%>
-     <div class="form-group">
-         <button type="submit" class="btn btn-default" name="save" onclick="bCancel=false">
-             <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
-         </button>
-     <div>
 
          <legend class="accordion-heading">
-             <a data-toggle="collapse" href="#collapse-address"><fmt:message key="user.address.address"/></a>
+             <a data-toggle="collapse" href="#collapse-address"><fmt:message key="school.address.physicalAddress"/></a>
          </legend>
          <div id="collapse-address" class="accordion-body collapse">
-             <div class="form-group">
-                 <appfuse:label styleClass="control-label" key="user.address.address"/>
-                 <form:input cssClass="form-control" path="address.address" id="address.address"/>
-             </div>
+                <div class="form-group">
+                    <appfuse:label styleClass="control-label" key="school.address.physicalAddress"/>
+                    <form:input cssClass="form-control" path="address.physicalAddress" id="address.physicalAddress"/>
+                </div>
              <div class="row">
                  <div class="col-sm-7 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.city"/>
+                     <appfuse:label styleClass="control-label" key="school.address.city"/>
                      <form:input cssClass="form-control" path="address.city" id="address.city"/>
                  </div>
                  <div class="col-sm-2 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.province"/>
+                     <appfuse:label styleClass="control-label" key="school.address.province"/>
                      <form:input cssClass="form-control" path="address.province" id="address.province"/>
                  </div>
                  <div class="col-sm-3 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.postalCode"/>
+                     <appfuse:label styleClass="control-label" key="school.address.postalCode"/>
                      <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
                  </div>
              </div>
              <div class="form-group">
-                 <appfuse:label styleClass="control-label" key="user.address.country"/>
-                 <appfuse:country name="address.country" prompt="" default="${user.address.country}"/>
+                 <appfuse:label styleClass="control-label" key="school.address.country"/>
+                 <appfuse:country name="address.country" prompt="" default="${school.address.country}"/>
              </div>
          </div>
              
-      </div> 
+     <!--  </div>  -->
              <div class="row">
                  <div class="col-sm-7 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.city"/>
+                     <appfuse:label styleClass="control-label" key="school.address.city"/>
                      <form:input cssClass="form-control" path="address.city" id="address.city"/>
                  </div>
                  <div class="col-sm-2 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.province"/>
+                     <appfuse:label styleClass="control-label" key="school.address.province"/>
                      <form:input cssClass="form-control" path="address.province" id="address.province"/>
                  </div>
                  <div class="col-sm-3 form-group">
-                     <appfuse:label styleClass="control-label" key="user.address.postalCode"/>
+                     <appfuse:label styleClass="control-label" key="school.address.postalCode"/>
                      <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
                  </div>
              </div>
 	        <div class="row">
-	            <spring:bind path="user.telNo1">
+	            <spring:bind path="school.telNo1">
 	            <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
 	            </spring:bind>
-	                <appfuse:label styleClass="control-label" key="user.telNo1"/>
+	                <appfuse:label styleClass="control-label" key="school.telNo1"/>
 	                <form:input cssClass="form-control" path="telNo1" id="telNo1"/>
 	                <form:errors path="telNo1" cssClass="help-block"/>
 	            </div>
 	            <div class="col-sm-6 form-group">
-	                <appfuse:label styleClass="control-label" key="user.telNo2"/>
+	                <appfuse:label styleClass="control-label" key="school.telNo2"/>
 	                <form:input cssClass="form-control" path="telNo2" id="telNo2"/>
 	            </div>
+	      <!--   </div> -->
+		     <div class="form-group">
+		         <button type="submit" class="btn btn-default" name="save" onclick="bCancel=false">
+		             <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
+		         </button>
+	
+	            <c:if test="${param.from == 'list' and param.method != 'Add'}">
+	              <button type="submit" class="btn btn-default" name="delete" onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
+	                  <i class="icon-trash"></i> <fmt:message key="button.delete"/>
+	              </button>
+	            </c:if>
+	
+	            <button type="submit" class="btn btn-default" name="cancel" onclick="bCancel=true">
+	                <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
+	            </button>
 	        </div>
-
-            <c:if test="${param.from == 'list' and param.method != 'Add'}">
-              <button type="submit" class="btn btn-default" name="delete" onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
-                  <i class="icon-trash"></i> <fmt:message key="button.delete"/>
-              </button>
-            </c:if>
-
-            <button type="submit" class="btn btn-default" name="cancel" onclick="bCancel=true">
-                <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
-            </button>
-        </div>
     </form:form>
 </div>
 
@@ -145,6 +152,6 @@ function onFormSubmit(theForm) {
 </script>
 </c:set>
 
-<v:javascript formName="user" staticJavascript="false"/>
+<v:javascript formName="school" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 

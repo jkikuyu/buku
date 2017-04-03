@@ -4,6 +4,9 @@ import ke.co.buku.Constants;
 //import ke.co.buku.model.Address;
 import ke.co.buku.model.Role;
 import ke.co.buku.model.User;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -18,6 +21,7 @@ public class UserDaoTest extends BaseDaoTestCase {
     private UserDao dao;
     @Autowired
     private RoleDao rdao;
+    Log log = LogFactory.getLog(GenericDaoTest.class);
 
     @Test(expected=DataAccessException.class)
     public void testGetUserInvalid() throws Exception {

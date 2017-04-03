@@ -28,10 +28,12 @@ public class Status extends BaseObject implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
-	private Long statusid;
-	@Column(nullable = false, length = 50)
+	private Long statusId;
+	@Column(nullable = false, length = 25)
 	@Field
 	private String name;
+
+	@Column(nullable = false, length = 50)
 	@Field
 	private String description;
 
@@ -44,8 +46,8 @@ public class Status extends BaseObject implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getStatusid() {
-		return statusid;
+	public Long getStatusId() {
+		return statusId;
 	}
 
 	public String getName() {
@@ -68,8 +70,8 @@ public class Status extends BaseObject implements Serializable {
 		this.delivery = delivery;
 	}
 
-	public void setStatusid(Long statusid) {
-		this.statusid = statusid;
+	public void setStatusId(Long statusId) {
+		this.statusId = statusId;
 	}
 
 	public void setName(String name) {

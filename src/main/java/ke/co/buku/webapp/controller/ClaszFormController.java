@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ke.co.buku.model.Clasz;
 import ke.co.buku.model.Status;
-import ke.co.buku.service.StatusManager;
+import ke.co.buku.service.ClaszManager;
+import ke.co.buku.service.UserManager;
 
 /**
  * Implementation of <strong>SimpleFormController</strong> that interacts with
@@ -27,69 +29,70 @@ import ke.co.buku.service.StatusManager;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude KikuyuS</a>
  */
 @Controller
-@RequestMapping("/admin/statusform*")
-public class StatusFormController extends BaseFormController {
+@RequestMapping("/admin/classform*")
+public class ClaszFormController extends BaseFormController {
 
-	private StatusManager statusManager = null;
+	private ClaszManager claszManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setStatusManager(StatusManager statusManager) {
-		this.statusManager = statusManager;
+	  public void setStatusManager(ClaszManager claszManager) {
+		this.claszManager = claszManager;
 	}
 	  
-	  public StatusFormController (){
+	  public ClaszFormController (){
 		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/admin/status");
+		  setSuccessView("redirect:/admin/class");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = RequestMethod.GET)
-	  protected Status showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
+	  protected Clasz showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return statusManager.get(new Long(id));
+			  return claszManager.get(new Long(id));
 		  }
-		  return new Status();
+		  return new Clasz();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
-	    public String onSubmit(Status status, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(Clasz clasz, BindingResult errors, HttpServletRequest request,
 	     HttpServletResponse response) throws Exception {
 	        if (request.getParameter("cancel") != null) {
 	            return getCancelView();
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(status, errors);
+	            validator.validate(clasz, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "admin/statusform";
+	                return "admin/classform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (status.getStatusId() == null);
+	        boolean isNew = (clasz.getClassId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	statusManager.remove(status.getStatusId());
+	        	claszManager.remove(clasz.getClassId());
 	            saveMessage(request, getText("status.deleted", locale));
 	        } else {
-	        	statusManager.save(status);
-	            String key = (isNew) ? "status.added" : "status.updated";
-	            saveMessage(request, getText(key, status.getName() ,locale));
+	        	claszManager.save(clasz);
+	            String key = (isNew) ? "class.added" : "class.updated";
+	            saveMessage(request, getText(key, clasz.getShortName() ,locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/statusform?id=" + status.getStatusId();
-	            }
+	                success = "redirect:/admin/classform?id=" + clasz.getClassId();
+	            
 	        }
 
-	        return success;
+	     
 	    }
-    
+	       return success;
+	  }
 }

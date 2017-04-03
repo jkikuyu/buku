@@ -33,7 +33,7 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 @XmlRootElement
 @SequenceGenerator(allocationSize=1,name="sequence", sequenceName="CLASS_FCSEQ")
-public class Class extends BaseObject implements Serializable {
+public class Clasz extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -59,7 +59,7 @@ public class Class extends BaseObject implements Serializable {
 	@OneToOne(mappedBy="clasz")	
 	private BookList booklist;
 
-	public Class() {
+	public Clasz() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -78,6 +78,22 @@ public class Class extends BaseObject implements Serializable {
 
 	public BookList getBooklist() {
 		return booklist;
+	}
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public String getLongName() {
+		return longName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+
+	public void setLongName(String longName) {
+		this.longName = longName;
 	}
 
 	public void setBooklist(BookList booklist) {

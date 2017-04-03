@@ -1,27 +1,27 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="categoryProfile.title"/></title>
+    <title><fmt:message key="paymodeProfile.title"/></title>
 </head>
 
-<c:set var="delObject" scope="request"><fmt:message key="categoryList.category"/></c:set>
+<c:set var="delObject" scope="request"><fmt:message key="paymodeList.paymentmode"/></c:set>
 <script type="text/javascript">var msgDelConfirm =
    "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 
 <div class="col-sm-10">
-    <h2><fmt:message key="categoryProfile.heading"/></h2>
+    <h2><fmt:message key="paymodeProfile.heading"/></h2>
     <c:choose>
         <c:when test="${param.from == 'list'}">
-            <p><fmt:message key="categoryProfile.admin.message"/></p>
+            <p><fmt:message key="paymodeProfile.admin.message"/></p>
         </c:when>
         <c:otherwise>
-            <p><fmt:message key="categoryProfile.message"/></p>
+            <p><fmt:message key="paymodeProfile.message"/></p>
         </c:otherwise>
     </c:choose>
 </div>
 <div class="col-sm-7">
-    <spring:bind path="category.*">
+    <spring:bind path="paymentMode.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
                 <a href="#" data-dismiss="alert" class="close">&times;</a>
@@ -32,32 +32,32 @@
         </c:if>
     </spring:bind>
 
-    <form:form commandName="category" method="post" action="categoryform" id="categoryForm" autocomplete="off"
-               cssClass="well" onsubmit="return validateCategory(this)">
+    <form:form commandName="paymentMode" method="post" action="paymodeform" id="paymodeForm" autocomplete="off"
+               cssClass="well" onsubmit="return validateStatus(this)">
                
-        <form:hidden path="categoryId"/>
-        <spring:bind path="category.categoryName">
+        <form:hidden path="modeId"/>
+        <spring:bind path="paymentMode.name">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="category.categoryName"/>
-            <form:input cssClass="form-control" path="categoryName" id="categoryName"/>
-            <form:errors path="categoryName" cssClass="help-block"/>
+            <appfuse:label styleClass="control-label" key="mode.name"/>
+            <form:input cssClass="form-control" path="name" id="name"/>
+            <form:errors path="name" cssClass="help-block"/>
         </div>
-        <spring:bind path="category.description">
+        <spring:bind path="paymentMode.description">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="category.description"/>
+            <appfuse:label styleClass="control-label" key="mode.description"/>
             <form:input cssClass="form-control" path="description" id="description"/>
             <form:errors path="description" cssClass="help-block"/>
         </div>
 
-<%--     <c:when test="${not empty category.name}">
+<%--     <c:when test="${not empty status.name}">
         <div class="form-group">
-            <label class="control-label"><fmt:message key="user.categorys"/>:</label>
+            <label class="control-label"><fmt:message key="user.statuses"/>:</label>
             <div class="readonly">
-                <c:forEach var="category" items="${category.categoryList}" varStatus="status">
-                    <c:out value="${category.label}"/><c:if test="${!status.last}">,</c:if>
-                    <input type="hidden" name="category" value="<c:out value="${category.label}"/>"/>
+                <c:forEach var="Status" items="${Status.statusList}" varStatus="status">
+                    <c:out value="${status.label}"/><c:if test="${!status.last}">,</c:if>
+                    <input type="hidden" name="userstatuses" value="<c:out value="${status.label}"/>"/>
                 </c:forEach>
             </div>
         </div>
@@ -82,18 +82,17 @@
 
 <c:set var="scripts" scope="request">
 <script type="text/javascript">
-// This is here so we can exclude the selectAll call when categorys is hidden
+// This is here so we can exclude the selectAll call when statuses is hidden
 function onFormSubmit(theForm) {
-    return validateCategory(theForm);
-
+    return validatePayMode(theForm);
 }
-$('#footer').addClass('setImage');
+/* $('#footer').addClass('setImage');
 
-$('#menubar').addClass('setImage');
+$('#menubar').addClass('setImage');*/
 
-</script>
+ </script>
 </c:set>
 
-<v:javascript formName="category" staticJavascript="false"/>
+<v:javascript formName="paymentMode" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 

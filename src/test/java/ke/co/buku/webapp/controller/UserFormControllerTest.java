@@ -1,7 +1,21 @@
 package ke.co.buku.webapp.controller;
 
-import ke.co.buku.model.User;
-import ke.co.buku.service.UserManager;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.servlet.Filter;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +26,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.servlet.Filter;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertNotNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import ke.co.buku.dao.GenericDaoTest;
+import ke.co.buku.model.User;
+import ke.co.buku.service.UserManager;
 
 @ContextConfiguration(locations = {
     "classpath:/applicationContext-resources.xml",
@@ -39,6 +46,7 @@ public class UserFormControllerTest extends BaseControllerTestCase {
     private Filter springSecurityFilterChain;
 
     private MockMvc mockMvc;
+    Log log = LogFactory.getLog(GenericDaoTest.class);
 
     @Before
     public void setUp() {

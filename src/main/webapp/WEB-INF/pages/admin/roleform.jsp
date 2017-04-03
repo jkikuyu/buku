@@ -87,13 +87,13 @@
 function onFormSubmit(theForm) {
     return validateRole(theForm);
 }
-$('#footer').addClass('setImage');
+/* $('#footer').addClass('setImage');
 
-$('#menubar').addClass('setImage');
+$('#menubar').addClass('setImage'); */
 
 </script>
 </c:set>
-<v:javascript formName="user" staticJavascript="false"/>
+<v:javascript formName="role" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 
 

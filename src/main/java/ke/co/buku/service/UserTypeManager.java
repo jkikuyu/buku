@@ -33,6 +33,13 @@ public interface UserTypeManager extends GenericManager<UserType, Long> {
      * {@inheritDoc}
      */
     void removeUserType(Integer userTypeId);
+    /**
+     * Search a user for search terms.
+     * @param searchTerm the search terms.
+     * @return a list of matches, or all if no searchTerm.
+     */
+    List<UserType> search(String searchTerm);
+
 
 
 
