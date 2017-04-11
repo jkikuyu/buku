@@ -3,7 +3,6 @@ package ke.co.buku.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 /**
  * This class represents the basic Class object in Buku that allows 
@@ -39,15 +37,7 @@ public class Clasz extends BaseObject implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
-
 	private Long classId;
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
-	private String shortName;
-    
-    @Column(nullable = false, length = 50, unique = true)
-    @Field
-	private String longName;
 
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="SCHOOL_ID") 
@@ -78,22 +68,6 @@ public class Clasz extends BaseObject implements Serializable {
 
 	public BookList getBooklist() {
 		return booklist;
-	}
-
-	public String getShortName() {
-		return shortName;
-	}
-
-	public String getLongName() {
-		return longName;
-	}
-
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-
-	public void setLongName(String longName) {
-		this.longName = longName;
 	}
 
 	public void setBooklist(BookList booklist) {

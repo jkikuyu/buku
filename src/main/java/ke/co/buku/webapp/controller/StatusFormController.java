@@ -39,7 +39,7 @@ public class StatusFormController extends BaseFormController {
 	}
 	  
 	  public StatusFormController (){
-		  setCancelView("redirect:/home");
+		  setCancelView("redirect:/admin/status");
 		  setSuccessView("redirect:/admin/status");
 	  }
 	  

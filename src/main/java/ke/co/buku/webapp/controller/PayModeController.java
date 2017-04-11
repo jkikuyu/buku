@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ke.co.buku.Constants;
 import ke.co.buku.dao.SearchException;
-import ke.co.buku.service.PaymentModeManger;
+import ke.co.buku.service.PaymentModeManager;
 
 /**
  * Simple class to retrieve a list of users from the database.
@@ -26,14 +26,14 @@ import ke.co.buku.service.PaymentModeManger;
 @Controller
 @RequestMapping("/admin/paymode*")
 public class PayModeController {
-	private PaymentModeManger paymentModeManager;
+	private PaymentModeManager paymentModeManager = null;
 	
 	public PayModeController() {
 		// TODO Auto-generated constructor stub
 	}
 
     @Autowired
-    public void setPaymentModeManger(PaymentModeManger paymentModeManager) {
+    public void setPaymentModeManger(PaymentModeManager paymentModeManager) {
         this.paymentModeManager = paymentModeManager;
     }
 

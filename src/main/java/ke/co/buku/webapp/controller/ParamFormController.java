@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ke.co.buku.model.Clasz;
-import ke.co.buku.model.Status;
-import ke.co.buku.service.ClaszManager;
+import ke.co.buku.model.Parameter;
+import ke.co.buku.service.ParamManager;
 import ke.co.buku.service.UserManager;
 
 /**
@@ -29,65 +28,65 @@ import ke.co.buku.service.UserManager;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude KikuyuS</a>
  */
 @Controller
-@RequestMapping("/admin/classform*")
-public class ClaszFormController extends BaseFormController {
+@RequestMapping("/admin/paramsform*")
+public class ParamFormController extends BaseFormController {
 
-	private ClaszManager claszManager = null;
+	private ParamManager paramManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setStatusManager(ClaszManager claszManager) {
-		this.claszManager = claszManager;
+	  public void setParamManager(ParamManager paramManager) {
+		this.paramManager = paramManager;
 	}
 	  
-	  public ClaszFormController (){
-		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/admin/class");
+	  public ParamFormController (){
+		  setCancelView("redirect:/admin/params");
+		  setSuccessView("redirect:/admin/params");
 	  }
 	  
 	  @ModelAttribute
 	  @RequestMapping(method = RequestMethod.GET)
-	  protected Clasz showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
+	  protected Parameter showForm(final HttpServletRequest request, final HttpServletResponse response)throws Exception
 	  {
 		  String id = request.getParameter("id");
 		  if (!StringUtils.isBlank(id))
 		  {
-			  return claszManager.get(new Long(id));
+			  return paramManager.get(new Long(id));
 		  }
-		  return new Clasz();
+		  return new Parameter();
 	  }
 	  
 	  @RequestMapping(method = RequestMethod.POST)
-	    public String onSubmit(Clasz clasz, BindingResult errors, HttpServletRequest request,
+	    public String onSubmit(Parameter parameter, BindingResult errors, HttpServletRequest request,
 	     HttpServletResponse response) throws Exception {
 	        if (request.getParameter("cancel") != null) {
 	            return getCancelView();
 	        }
 
 	        if (validator != null) { // validator is null during testing
-	            validator.validate(clasz, errors);
+	            validator.validate(parameter, errors);
 
 	            if (errors.hasErrors() && request.getParameter("delete") == null) { // don't validate when deleting
-	                return "admin/classform";
+	                return "admin/paramsform";
 	            }
 	        }
 
 	        log.debug("entering 'onSubmit' method...");
 
-	        boolean isNew = (clasz.getClassId() == null);
+	        boolean isNew = (parameter.getParameterId() == null);
 	        String success = getSuccessView();
 	        Locale locale = request.getLocale();
 
 	        if (request.getParameter("delete") != null) {
-	        	claszManager.remove(clasz.getClassId());
-	            saveMessage(request, getText("status.deleted", locale));
+	        	paramManager.remove(parameter.getParameterId());
+	            saveMessage(request, getText("parameter.deleted", locale));
 	        } else {
-	        	claszManager.save(clasz);
-	            String key = (isNew) ? "class.added" : "class.updated";
-	            saveMessage(request, getText(key, clasz.getShortName() ,locale));
+	        	paramManager.save(parameter);
+	            String key = (isNew) ? "parameter.added" : "parameter.updated";
+	            saveMessage(request, getText(key, parameter.getDescription() ,locale));
 
 	            if (!isNew) {
-	                success = "redirect:/admin/classform?id=" + clasz.getClassId();
+	                success = "redirect:/admin/paramsform?id=" + parameter.getParameterId();
 	            
 	        }
 

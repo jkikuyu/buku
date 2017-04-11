@@ -11,46 +11,46 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ke.co.buku.Constants;
 import ke.co.buku.dao.SearchException;
-import ke.co.buku.service.ClaszManager;
+import ke.co.buku.service.ParamManager;
 
 /**
  * Simple class to retrieve a list of users from the database.
  * <p/>
  * <p>
- * <a href="UserController.java.html"><i>View Source</i></a>
+ * <a href="ParamsController.java.html"><i>View Source</i></a>
  * </p>
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu</a>
  */
 
 @Controller
-@RequestMapping("/admin/class*")
+@RequestMapping("/admin/params*")
 
-public class ClaszController {
+public class ParamController {
 
-	public ClaszController() {
+	public ParamController() {
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-    private ClaszManager classManager = null;
+    private ParamManager paramsManager = null;
 
     @Autowired
-    public void setClassManager(ClaszManager classManager) {
-        this.classManager = classManager;
+    public void setParamManager(ParamManager paramsManager) {
+        this.paramsManager = paramsManager;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView handleRequest(@RequestParam(required = false, value = "q") String query) throws Exception {
         Model model = new ExtendedModelMap();
         try {
-            model.addAttribute(Constants.CLASS_LIST, classManager.search(query));
+            model.addAttribute(Constants.PARAMS_LIST, paramsManager.search(query));
         } catch (SearchException se) {
             model.addAttribute("searchError", se.getMessage());
-            model.addAttribute(classManager.getClasses());
+            model.addAttribute(paramsManager.getParams());
         }
-        return new ModelAndView("admin/classesList", model.asMap());
+        return new ModelAndView("admin/paramsList", model.asMap());
     }
 }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ke.co.buku.dao.PaymentModeDao;
 import ke.co.buku.model.PaymentMode;
 import ke.co.buku.model.User;
-import ke.co.buku.service.PaymentModeManger;
+import ke.co.buku.service.PaymentModeManager;
 
 /**
  * Business Service Interface to handle communication between web and
@@ -17,8 +17,8 @@ import ke.co.buku.service.PaymentModeManger;
  * @author <a href="mailto:jkikuyu@gmail.com">Jude Kikuyu </a>
  * date: 24/03/2017
  */
-@Service("paymentModeManger")
-public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long> implements PaymentModeManger{
+@Service("paymentModeManager")
+public class PaymentModeMangerImpl extends GenericManagerImpl<PaymentMode, Long> implements PaymentModeManager{
 	private PaymentModeDao paymentModeDao;
   
 	@Override

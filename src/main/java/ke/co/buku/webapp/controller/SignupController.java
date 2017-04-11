@@ -1,15 +1,11 @@
 package ke.co.buku.webapp.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ke.co.buku.Constants;
-import ke.co.buku.model.User;
-import ke.co.buku.service.RoleManager;
-import ke.co.buku.service.UserExistsException;
-import ke.co.buku.webapp.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.security.access.AccessDeniedException;
@@ -22,6 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 
+import ke.co.buku.Constants;
+import ke.co.buku.model.Parameter;
+import ke.co.buku.model.User;
+import ke.co.buku.model.UserType;
+import ke.co.buku.service.ParamManager;
+import ke.co.buku.service.RoleManager;
+import ke.co.buku.service.UserExistsException;
+import ke.co.buku.service.UserTypeManager;
+import ke.co.buku.webapp.util.RequestUtil;
+
 /**
  * Controller to signup new users.
  *
@@ -31,10 +37,21 @@ import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 @RequestMapping("/signup*")
 public class SignupController extends BaseFormController {
     private RoleManager roleManager;
+    private ParamManager paramManager;
+    private UserTypeManager userTypeManager;
+
+    @Autowired
+    public void setParamManager(final ParamManager paramManager) {
+    	this.paramManager =paramManager;
+    }
 
     @Autowired
     public void setRoleManager(final RoleManager roleManager) {
         this.roleManager = roleManager;
+    }
+    @Autowired
+    public void setUserTypeManager(final UserTypeManager userTypeManager) {
+        this.userTypeManager = userTypeManager;
     }
 
     public SignupController() {
@@ -44,7 +61,9 @@ public class SignupController extends BaseFormController {
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
-    public User showForm() {
+    public User showForm(HttpServletRequest request, HttpServletResponse response) {
+    	List<Parameter>grpList = paramManager.getParamsByGroupId(1);
+    	request.setAttribute("usertypes", grpList);
         return new User();
     }
 
@@ -79,6 +98,8 @@ public class SignupController extends BaseFormController {
         final String password = user.getPassword();
 
         try {
+        	UserType userType = userTypeManager.getUserType(Integer.parseInt(user.getUsertype()));
+        	user.setUserType(userType);
             this.getUserManager().saveUser(user);
         } catch (final AccessDeniedException ade) {
             // thrown by UserSecurityAdvice configured in aop:advisor userManagerSecurity

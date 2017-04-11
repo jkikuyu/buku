@@ -1,11 +1,15 @@
 package ke.co.buku.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.io.Serializable;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -123,4 +127,31 @@ public class Address extends BaseObject implements Serializable {
                 .append("postalCode", this.postalCode)
                 .append("city", this.city).toString();
     }
+    //http://appfuse.547863.n4.nabble.com/User-country-value-td554821.html
+    //http://www.servletsuite.com/servlets/cntrtag.htm
+    protected List buildCountryList(Locale locale) {
+        final String EMPTY = "";
+        final Locale[] available = Locale.getAvailableLocales();
+
+        List countries = new ArrayList();
+
+        for (int i = 0; i < available.length; i++) {
+            final String iso = available[i].getCountry();
+            final String name = available[i].getDisplayCountry(locale);
+
+            if (!EMPTY.equals(iso) && !EMPTY.equals(name)) {
+                LabelValue country = new LabelValue(name, iso);
+                
+
+                if (!countries.contains(country)) {
+                    countries.add(new LabelValue(name, iso));
+                }
+            }
+        }
+
+       // Collections.sort(countries, new LabelValueComparator(locale));
+
+        return countries;
+    }
+
 }

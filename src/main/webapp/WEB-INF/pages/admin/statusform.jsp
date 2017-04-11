@@ -86,10 +86,11 @@
 function onFormSubmit(theForm) {
     return validateStatus(theForm);
 }
-$('#footer').addClass('setImage');
+/* $('#footer').addClass('setImage');
 
 $('#menubar').addClass('setImage');
-</script>
+ */
+ </script>
 </c:set>
 
 <v:javascript formName="status" staticJavascript="false"/>

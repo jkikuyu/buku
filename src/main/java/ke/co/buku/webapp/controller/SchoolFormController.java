@@ -39,12 +39,12 @@ public class SchoolFormController extends BaseFormController {
 	}
 	  
 	  public SchoolFormController (){
-		  setCancelView("redirect:/home");
-		  setSuccessView("redirect:/home/schools");
+		  setCancelView("redirect:/admin/schools");
+		  setSuccessView("redirect:/admin/schools");
 	  }
 	  
 	  @ModelAttribute
-	  @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
+	  @RequestMapping(method = RequestMethod.GET)
 	  protected School showForm(HttpServletRequest request)throws Exception
 	  {
 		  String id = request.getParameter("id");
@@ -80,11 +80,11 @@ public class SchoolFormController extends BaseFormController {
 
 	        if (request.getParameter("delete") != null) {
 	        	schoolManager.remove(school.getSchoolId());
-	            saveMessage(request, getText("uploadfiledetails.deleted", locale));
+	            saveMessage(request, getText("school.deleted", locale));
 	        } else {
 	        	schoolManager.save(school);
-	            String key = (isNew) ? "uploadfiledetails.added" : "uploadfiledetails.updated";
-	            saveMessage(request, getText(key, locale));
+	            String key = (isNew) ? "school.added" : "school.updated";
+	            saveMessage(request, getText(key,school.getShortName(), locale));
 
 	            if (!isNew) {
 	                success = "redirect:/admin/schoolform?id=" + school.getSchoolId();

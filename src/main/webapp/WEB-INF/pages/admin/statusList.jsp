@@ -40,7 +40,7 @@
                    defaultsort="1" id="status" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
         <display:column property="name" escapeXml="true" sortable="true" titleKey="status.name" style="width: 25%"
                         url="/admin/statusform?from=list" paramId="id" paramProperty="statusId"/>
-        <display:column property="fullName" escapeXml="true" sortable="true" titleKey="status.description"
+        <display:column property="description" escapeXml="true" sortable="true" titleKey="status.description"
                         style="width: 34%"/>
 
         <display:setProperty name="paging.banner.item_name"><fmt:message key="statusList.status"/></display:setProperty>

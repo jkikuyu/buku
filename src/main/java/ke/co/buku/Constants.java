@@ -85,7 +85,7 @@ public final class Constants {
     /**
      * The request scope attribute that holds the user list
      */
-    public static final String CLASS_LIST = "classList";
+    public static final String PARAMS_LIST = "paramsList";
 
     /**
      * The request scope attribute for indicating a newly-registered user

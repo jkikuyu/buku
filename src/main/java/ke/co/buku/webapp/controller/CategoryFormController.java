@@ -39,7 +39,7 @@ public class CategoryFormController extends BaseFormController {
 	}
 	  
 	  public CategoryFormController (){
-		  setCancelView("redirect:/home");
+		  setCancelView("redirect:/admin/category");
 		  setSuccessView("redirect:/admin/category");
 	  }
 	  

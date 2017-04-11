@@ -36,9 +36,9 @@
 		   	<div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
 	        </spring:bind>
 				<appfuse:label styleClass="control-label" key="user.usertype"/>
-				<form:select cssClass="form-control" path="usertype">
+				<form:select cssClass="form-control" path="userType.usertype_id">
 					<form:option value="" label="------who are you--------"></form:option>
-					<form:options   items="${usertypes}"  itemLabel="typename" itemValue="usertypeid"/>   
+					<form:options   items="${usertypes}"  itemLabel="description" itemValue="parameterId"/>   
 				 </form:select>
 		   	</div>
 		</div>  

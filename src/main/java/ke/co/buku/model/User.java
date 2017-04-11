@@ -128,7 +128,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Customer customer;
     @ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="USERTYPE_ID") 
-    private UserType userType;
+    private UserType userType = new UserType();
     @Transient
     private String fullName;
     @Transient

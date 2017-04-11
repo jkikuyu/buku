@@ -39,7 +39,7 @@ public class RoleFormController extends BaseFormController {
 	}
 	  
 	  public RoleFormController (){
-		  setCancelView("redirect:/home");
+		  setCancelView("redirect:/admin/roles");
 		  setSuccessView("redirect:/admin/roles");
 	  }
 	  

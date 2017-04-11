@@ -77,23 +77,23 @@
                      <appfuse:label styleClass="control-label" key="school.address.city"/>
                      <form:input cssClass="form-control" path="address.city" id="address.city"/>
                  </div>
-                 <div class="col-sm-2 form-group">
-                     <appfuse:label styleClass="control-label" key="school.address.province"/>
-                     <form:input cssClass="form-control" path="address.province" id="address.province"/>
-                 </div>
-                 <div class="col-sm-3 form-group">
+			<%--  
+                <div class="col-sm-3 form-group">
                      <appfuse:label styleClass="control-label" key="school.address.postalCode"/>
                      <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
-                 </div>
+                 </div> 
+                 --%>
              </div>
              <div class="form-group">
                  <appfuse:label styleClass="control-label" key="school.address.country"/>
-                 <appfuse:country name="address.country" prompt="" default="${school.address.country}"/>
-             </div>
+<%--                  <appfuse:country name="address.country" prompt="" default="${school.address.country}"/>
+
+ --%>             </div>
          </div>
              
      <!--  </div>  -->
-             <div class="row">
+            <%--  
+				<div class="row">
                  <div class="col-sm-7 form-group">
                      <appfuse:label styleClass="control-label" key="school.address.city"/>
                      <form:input cssClass="form-control" path="address.city" id="address.city"/>
@@ -106,7 +106,8 @@
                      <appfuse:label styleClass="control-label" key="school.address.postalCode"/>
                      <form:input cssClass="form-control" path="address.postalCode" id="address.postalCode"/>
                  </div>
-             </div>
+             </div> 
+        --%>
 	        <div class="row">
 	            <spring:bind path="school.telNo1">
 	            <div class="col-sm-6 form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
@@ -143,10 +144,6 @@
 // This is here so we can exclude the selectAll call when schools is hidden
 function onFormSubmit(theForm) {
     return validateSchool(theForm);
-    $('#footer').addClass('setImage');
-
-    $('#menubar').addClass('setImage');
-
 
 }
 </script>

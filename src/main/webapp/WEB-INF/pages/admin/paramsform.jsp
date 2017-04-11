@@ -1,27 +1,27 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="classProfile.title"/></title>
+    <title><fmt:message key="paramsProfile.title"/></title>
 </head>
 
-<c:set var="delObject" scope="request"><fmt:message key="schoolList.school"/></c:set>
+<c:set var="delObject" scope="request"><fmt:message key="paramsList.school"/></c:set>
 <script type="text/javascript">var msgDelConfirm =
    "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 
 <div class="col-sm-10">
-    <h2><fmt:message key="classProfile.heading"/></h2>
+    <h2><fmt:message key="paramsProfile.heading"/></h2>
     <c:choose>
         <c:when test="${param.from == 'list'}">
-            <p><fmt:message key="classProfile.admin.message"/></p>
+            <p><fmt:message key="paramsProfile.admin.message"/></p>
         </c:when>
         <c:otherwise>
-            <p><fmt:message key="classProfile.message"/></p>
+            <p><fmt:message key="paramsProfile.message"/></p>
         </c:otherwise>
     </c:choose>
 </div>
 <div class="col-sm-7">
-    <spring:bind path="clasz.*">
+    <spring:bind path="parameter.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
                 <a href="#" data-dismiss="alert" class="close">&times;</a>
@@ -32,23 +32,23 @@
         </c:if>
     </spring:bind>
 
-    <form:form commandName="clasz" method="post" action="classform" id="classForm" autocomplete="off"
-               cssClass="well" onsubmit="return validateClasz(this)">
+    <form:form commandName="parameter" method="post" action="paramsform" id="paramsForm" autocomplete="off"
+               cssClass="well" onsubmit="return validateparam(this)">
                
-        <form:hidden path="classId"/>
-        <spring:bind path="clasz.shortName">
+        <form:hidden path="parameterId"/>
+        <spring:bind path="parameter.description">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="class.shortName"/>
-            <form:input cssClass="form-control" path="shortName" id="shortName"/>
-            <form:errors path="shortName" cssClass="help-block"/>
+            <appfuse:label styleClass="control-label" key="params.description"/>
+            <form:input cssClass="form-control" path="description" id="description"/>
+            <form:errors path="description" cssClass="help-block"/>
         </div>
-        <spring:bind path="clasz.longName">
+        <spring:bind path="parameter.value">
         <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
-            <appfuse:label styleClass="control-label" key="class.longName"/>
-            <form:input cssClass="form-control" path="longName" id="longName"/>
-            <form:errors path="longName" cssClass="help-block"/>
+            <appfuse:label styleClass="control-label" key="params.value"/>
+            <form:input cssClass="form-control" path="value" id="value"/>
+            <form:errors path="value" cssClass="help-block"/>
         </div>
 
 <%--     <c:when test="${not empty class.name}">
@@ -93,6 +93,6 @@ function onFormSubmit(theForm) {
 </script>
 </c:set>
 
-<v:javascript formName="clasz" staticJavascript="false"/>
+<v:javascript formName="parameter" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value="/scripts/validator.jsp"/>"></script>
 

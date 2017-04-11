@@ -30,13 +30,12 @@ public class PaymentMode extends BaseObject implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
 	private Long modeId;
-	
-	@Field
 	@Column(nullable = false, length=50)
+	@Field
 	private String name;
 	
-	@Field
 	@Column(nullable = false, length=50)
+	@Field
 	private String description;
 
 	@OneToMany(mappedBy="paymentmode")

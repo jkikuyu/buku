@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ke.co.buku.model.PaymentMode;
-import ke.co.buku.service.PaymentModeManger;
+import ke.co.buku.service.PaymentModeManager;
 import ke.co.buku.service.UserManager;
 
 /**
@@ -31,16 +31,16 @@ import ke.co.buku.service.UserManager;
 @RequestMapping("/admin/paymodeform*")
 public class PayModeFormController extends BaseFormController {
 
-	private PaymentModeManger paymodeManager = null;
+	private PaymentModeManager paymodeManager = null;
 	  protected final transient Log log = LogFactory.getLog(getClass());
 
 	  @Autowired
-	  public void setCategoryManager(PaymentModeManger paymodeManager) {
+	  public void setCategoryManager(PaymentModeManager paymodeManager) {
 		this.paymodeManager = paymodeManager;
 	}
 	  
 	  public PayModeFormController (){
-		  setCancelView("redirect:/home");
+		  setCancelView("redirect:/admin/paymode");
 		  setSuccessView("redirect:/admin/paymode");
 	  }
 	  

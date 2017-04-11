@@ -39,7 +39,7 @@ public class UserTypeFormController extends BaseFormController {
 	}
 	  
 	  public UserTypeFormController (){
-		  setCancelView("redirect:/home");
+		  setCancelView("redirect:/admin/types");
 		  setSuccessView("redirect:/admin/types");
 	  }
 	  

@@ -10,7 +10,7 @@
    "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 
-<div class="col-sm-2">
+<div class="col-sm-10">
     <h2><fmt:message key="userProfile.heading"/></h2>
     <c:choose>
         <c:when test="${param.from == 'list'}">
@@ -21,7 +21,7 @@
         </c:otherwise>
     </c:choose>
 </div>
-<div class="col-sm-10">
+<div class="col-sm-7">
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">

@@ -38,9 +38,9 @@
 
     <display:table name="schoolsList" cellspacing="0" cellpadding="0" requestURI=""
                    defaultsort="1" id="schools" pagesize="25" class="table table-condensed table-striped table-hover" export="true">
-        <display:column property="shortDesc" escapeXml="true" sortable="true" titleKey="school.shortDesc" style="width: 25%"
+        <display:column property="shortName" escapeXml="true" sortable="true" titleKey="school.shortName" style="width: 25%"
                         url="/admin/schoolform?from=list" paramId="id" paramProperty="schoolId"/>
-        <display:column property="longDesc" escapeXml="true" sortable="true" titleKey="school.longDesc"
+        <display:column property="longName" escapeXml="true" sortable="true" titleKey="school.longName"
                         style="width: 34%"/>
 		<%--  <display:column sortProperty="enabled" sortable="true" titleKey="school.enabled"
                         style="width: 16%; padding-left: 15px" media="html">

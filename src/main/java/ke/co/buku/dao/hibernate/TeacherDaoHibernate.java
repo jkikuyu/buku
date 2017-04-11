@@ -2,9 +2,11 @@ package ke.co.buku.dao.hibernate;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import ke.co.buku.dao.TeacherDao;
 import ke.co.buku.model.Teacher;
-
+@Repository("teacherDao")
 public class TeacherDaoHibernate extends GenericDaoHibernate<Teacher, Long> implements TeacherDao {
 
 	public TeacherDaoHibernate() {
